@@ -36,8 +36,6 @@ export const ui = {
 
     "tech.eyebrow": "아키텍처",
     "tech.title": "네이티브로 빠르게,\n격리로 안전하게",
-    "tech.lead":
-      "Tauri 2 · React 19 · Rust 로 만든 데스크톱 앱. 세션마다 별도 git worktree 로 같은 저장소를 안전하게 동시 작업합니다.",
 
     "install.eyebrow": "설치",
     "install.title": "한 줄로 시작",
@@ -86,8 +84,6 @@ export const ui = {
 
     "tech.eyebrow": "Architecture",
     "tech.title": "Native speed,\nisolated safety",
-    "tech.lead":
-      "A desktop app built with Tauri 2 · React 19 · Rust. Each session gets its own git worktree so you work the same repo in parallel, safely.",
 
     "install.eyebrow": "Install",
     "install.title": "Start in one line",
