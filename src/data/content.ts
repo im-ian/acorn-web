@@ -82,8 +82,8 @@ export const techPoints: TechPoint[] = [
   {
     k: { ko: "Tauri 2 · Rust 코어", en: "Tauri 2 · Rust core" },
     v: {
-      ko: "Rust 코어와 네이티브 PTY 셸로 가볍고 빠르게 — 무거운 런타임 없이.",
-      en: "A Rust core and native PTY shells keep it light and fast — no heavy runtime.",
+      ko: "무거운 런타임 없이, Rust 코어와 네이티브 PTY 셸로 가볍고 빠르게.",
+      en: "No heavy runtime — a Rust core and native PTY shells keep it light and fast.",
     },
   },
   {
