@@ -7,6 +7,9 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const taglineLines = t("hero.tagline")
+  .split("—")
+  .map((s) => s.trim());
 ---
 
 <section class="hero">
@@ -20,7 +23,16 @@ const t = useTranslations(lang);
       fetchpriority="high"
     />
     <h1 class="hero__title">{t("hero.title")}</h1>
-    <p class="hero__tagline">{t("hero.tagline")}</p>
+    <p class="hero__tagline">
+      {
+        taglineLines.map((line, i) => (
+          <Fragment>
+            {i > 0 && <br />}
+            {line}
+          </Fragment>
+        ))
+      }
+    </p>
 
     <div class="hero__cta">
       <a class="pill pill--primary" href={links.releasesLatest} target="_blank" rel="noopener">
@@ -63,9 +75,10 @@ const t = useTranslations(lang);
     letter-spacing: -0.04em;
   }
   .hero__tagline {
-    max-width: 34ch;
+    max-width: 100%;
     margin: 1.1rem auto 0;
     font-size: var(--text-lead);
+    text-wrap: balance;
     color: color-mix(in oklab, var(--ink) 78%, var(--bg));
   }
   .hero__cta {
