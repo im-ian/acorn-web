@@ -11,7 +11,7 @@ export interface ValueItem {
 
 export const values: ValueItem[] = [
   {
-    icon: "🪟",
+    icon: "▦",
     title: { ko: "다중 Pane 워크스페이스", en: "Multi-pane workspace" },
     body: {
       ko: "가로/세로 분할과 자유로운 크기 조절. Pane 간 세션 드래그-드롭, 탭 이동·복제, 보이는 세션에 동시 입력하는 multi-input 모드.",

@@ -46,18 +46,16 @@ const t = useTranslations(lang);
 <style>
   .values__head h2 {
     font-size: var(--text-h2);
-    text-wrap: nowrap;
+    line-height: 1.12;
+    max-width: min(100%, 20ch);
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
   .values__head p {
     margin-top: 0.9rem;
     color: var(--muted);
     font-size: var(--text-lead);
     max-width: 46ch;
-  }
-  @media (max-width: 560px) {
-    .values__head h2 {
-      text-wrap: normal;
-    }
   }
   .values__grid {
     margin-top: clamp(2rem, 1rem + 3vw, 3.5rem);
