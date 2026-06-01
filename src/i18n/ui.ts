@@ -30,7 +30,7 @@ export const ui = {
 
     "value.title": "AI와 사람의 협업을 수월하게",
     "value.lead":
-      "AI는 강력하고 유용한 도구지만, 결정과 책임은 사람의 몫. Acorn은 이 둘을 유연하게 이어주도록 설계됐습니다.",
+      "AI는 강력하고 유용한 도구지만, 결정과 책임은 사람의 몫.\nAcorn은 이 둘을 유연하게 이어주도록 설계됐습니다.",
 
     "features.title": "한 창에 필요한 모든 것",
 
@@ -80,7 +80,7 @@ export const ui = {
 
     "value.title": "Smoother human–AI collaboration",
     "value.lead":
-      "AI is a powerful, useful tool — but decisions and accountability stay with people. Acorn is designed to connect the two flexibly.",
+      "AI is a powerful, useful tool — but decisions and accountability stay with people.\nAcorn is designed to connect the two flexibly.",
 
     "features.title": "Everything in one window",
 

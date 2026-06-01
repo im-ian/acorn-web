@@ -13,7 +13,18 @@ const t = useTranslations(lang);
   <div class="container">
     <header class="values__head reveal">
       <h2>{t("value.title")}</h2>
-      <p>{t("value.lead")}</p>
+      <p>
+        {
+          t("value.lead")
+            .split("\n")
+            .map((line, i) => (
+              <Fragment>
+                {i > 0 && <br />}
+                {line}
+              </Fragment>
+            ))
+        }
+      </p>
     </header>
 
     <div class="values__grid">
