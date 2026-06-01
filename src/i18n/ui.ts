@@ -46,7 +46,7 @@ export const ui = {
 
     "cta.title": "지금 바로 흩어진 작업들을 모아보세요",
     "cta.download": "macOS 다운로드",
-    "cta.star": "GitHub 스타",
+    "cta.star": "GitHub에서 보기",
 
     "footer.tagline": "코딩 에이전트들과 편의 기능들을 한곳에.",
     "footer.made": "제작",
@@ -93,7 +93,7 @@ export const ui = {
 
     "cta.title": "Bring your scattered work together",
     "cta.download": "Download for macOS",
-    "cta.star": "Star on GitHub",
+    "cta.star": "View on GitHub",
 
     "footer.tagline": "Coding agents and conveniences, all in one place.",
     "footer.made": "Made by",
