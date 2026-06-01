@@ -123,26 +123,6 @@ img {
 .pill--accent { background: var(--accent); color: #fff; }
 .pill--accent:hover { background: var(--accent-hover); }
 
-/* ── floating gray circles (hero atmosphere) ── */
-/* Each circle sets its own random drift vector via --dx / --dy. */
-@keyframes ac-drift {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(var(--dx, 0), var(--dy, 0)); }
-}
-.ac-floats {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.ac-floats span {
-  position: absolute;
-  border-radius: 50%;
-  background: color-mix(in oklab, var(--ink) 3%, transparent);
-  border: 1px solid color-mix(in oklab, var(--ink) 3%, transparent);
-}
-
 /* ── scroll reveal ── */
 .reveal {
   opacity: 0;
@@ -156,7 +136,6 @@ img {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .ac-floats span { animation: none !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .pill { transition: none; }
 }
