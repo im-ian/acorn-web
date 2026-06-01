@@ -103,7 +103,7 @@ export const techPoints: TechPoint[] = [
   {
     k: { ko: "Background sessions", en: "Background sessions" },
     v: {
-      ko: "백그라운드 daemon이 PTY 세션을 살려둬, 앱을 종료·재시작해도 다시 열면 화면 그대로.",
+      ko: "백그라운드 daemon이 PTY 세션을 관리해, 앱을 종료·재시작해도 다시 열면 화면 그대로.",
       en: "A background daemon keeps PTY sessions alive — quit, relaunch, and reopen right where you left off.",
     },
   },
