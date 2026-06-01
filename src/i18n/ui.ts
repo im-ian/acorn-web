@@ -28,7 +28,7 @@ export const ui = {
 
     "window.caption": "메인 워크스페이스 — 사이드바 + 분할 Pane + 우측 패널",
 
-    "value.title": "사람과 AI가 한 화면에서",
+    "value.title": "AI와 사람의 협업을 수월하게",
     "value.lead":
       "AI는 강력하지만 결정과 책임은 사람의 몫. Acorn은 둘이 자연스럽게 협업하도록 설계됐습니다.",
 
@@ -78,7 +78,7 @@ export const ui = {
 
     "window.caption": "Main workspace — sidebar + split panes + right panel",
 
-    "value.title": "People and AI on one screen",
+    "value.title": "Smoother human–AI collaboration",
     "value.lead":
       "AI is powerful, but decisions and accountability stay with people. Acorn is built for the two to collaborate naturally.",
 
