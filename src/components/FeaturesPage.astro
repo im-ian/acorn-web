@@ -1,9 +1,6 @@
 ---
 import type { Lang } from "~/i18n/ui";
-import PageHeader from "~/components/PageHeader.astro";
-import ValueCards from "~/components/ValueCards.astro";
-import Features from "~/components/Features.astro";
-import TechStack from "~/components/TechStack.astro";
+import { asset, links } from "~/lib/site";
 
 interface Props {
   lang: Lang;
@@ -13,19 +10,693 @@ const { lang } = Astro.props;
 const copy = {
   ko: {
     eyebrow: "기능",
-    title: "한 창에 담은 전체 기능",
-    lead: "다중 Pane, 격리 worktree, PTY 터미널, 에이전트 세션, Control session, 우측 패널까지 — Acorn이 제공하는 것들.",
+    title: "Acorn 기능 전체 보기",
+    lead:
+      "README의 주요 기능을 페이지 안에서 바로 훑을 수 있도록 정리했습니다. 워크스페이스, 에이전트, GitHub, 히스토리, 설정까지 Acorn이 제공하는 기능을 빠짐없이 확인하세요.",
+    screenshotAlt: "Acorn 메인 워크스페이스",
+    quickTitle: "빠르게 훑기",
+    quickItems: [
+      "다중 Pane + 탭 워크스페이스",
+      "세션별 격리 git worktree",
+      "Claude / Codex / Antigravity 등 AI CLI 세션",
+      "우측 Code · GitHub · Agents 패널",
+      "Background sessions와 Control session",
+      "Activity, History, Todos, 자동 업데이트",
+    ],
+    groups: [
+      {
+        title: "워크스페이스와 프로젝트",
+        intro: "여러 작업을 한 창에서 분리하고, 필요할 때 다시 합쳐 볼 수 있는 기본 작업면입니다.",
+        items: [
+          {
+            title: "다중 Pane 워크스페이스",
+            body:
+              "가로/세로 분할, 자유로운 크기 조절, Pane 간 세션 드래그-드롭, 탭 이동·복제·재배치를 지원합니다. 빈 Pane을 더블 클릭해 새 세션을 만들 수 있습니다.",
+          },
+          {
+            title: "Multi-input 모드",
+            body: "현재 보이는 여러 세션에 같은 입력을 동시에 보내 반복 명령이나 병렬 확인 작업을 빠르게 처리합니다.",
+          },
+          {
+            title: "프로젝트 그룹과 정렬",
+            body: "앱 안에서 프로젝트를 추가하고 사이드바에서 그룹화합니다. 프로젝트와 세션은 드래그로 재정렬할 수 있습니다.",
+          },
+          {
+            title: "격리된 git worktree",
+            body:
+              "세션마다 별도 worktree를 만들어 같은 저장소에서 충돌 없이 병렬 작업합니다. 종료 시 worktree 정리 옵션과 항상 삭제 모드를 제공합니다.",
+          },
+        ],
+      },
+      {
+        title: "터미널과 에이전트 세션",
+        intro: "Acorn의 세션은 네이티브 PTY 위에서 동작하고, 그 안에서 원하는 AI CLI를 직접 실행합니다.",
+        items: [
+          {
+            title: "PTY 터미널",
+            body:
+              "네이티브 PTY 셸 세션을 사용합니다. 재오픈 시 스크롤백을 복원하고, 터미널 안의 파일 경로와 URL 클릭을 지원합니다.",
+          },
+          {
+            title: "AI CLI 직접 실행",
+            body:
+              "세션은 항상 $SHELL로 시작합니다. Claude Code, Codex, Antigravity, Ollama, llm, 커스텀 CLI를 원하는 방식으로 실행할 수 있습니다.",
+          },
+          {
+            title: "세션 fork",
+            body: "Claude, Codex, Antigravity 세션을 현재 Pane이나 새 worktree로 fork해 같은 맥락에서 별도 작업을 이어갑니다.",
+          },
+          {
+            title: "탭 제목 자동 생성",
+            body: "대화 내용에 맞춰 에이전트 탭 제목을 자동으로 갱신해 여러 세션을 구분하기 쉽게 만듭니다.",
+          },
+          {
+            title: "라이브 상태 표시",
+            body:
+              "사이드바에서 유휴, 입력 대기, 작업 중 상태를 확인합니다. Claude, Codex, Antigravity transcript와 hook 기반으로 추적합니다.",
+          },
+        ],
+      },
+      {
+        title: "대화 영속화와 백그라운드 실행",
+        intro: "앱을 닫아도 작업 흐름을 잃지 않도록 세션과 대화 이력을 보존합니다.",
+        items: [
+          {
+            title: "대화 UUID 추적",
+            body: "Claude, Codex, Antigravity 대화 UUID를 세션별로 추적하고, 포커스 시 이전 대화 resume을 제안합니다.",
+          },
+          {
+            title: "History 탭",
+            body: "우측 패널 History에서 프로젝트별 transcript 히스토리를 확인하고, 더블 클릭으로 새 터미널에서 resume합니다.",
+          },
+          {
+            title: "Background sessions",
+            body:
+              "앱을 종료하거나 재시작해도 PTY 세션을 유지합니다. 다시 열면 이전 화면을 복원하고, Services 설정에서 Kill, Restore, Forget을 제어합니다.",
+          },
+          {
+            title: "상태 표시줄 제어",
+            body: "Background sessions 상태를 상태 표시줄 아이콘과 드롭다운에서 확인하고 빠르게 제어합니다.",
+          },
+        ],
+      },
+      {
+        title: "Control session",
+        intro: "한 세션의 AI가 같은 프로젝트 안의 다른 세션을 조작할 수 있는 고급 자동화 기능입니다.",
+        items: [
+          {
+            title: "세션 원격 조작",
+            body: "다른 세션에 입력을 보내고, 화면을 읽고, 새 세션을 만들고, 선택하거나 종료할 수 있습니다.",
+          },
+          {
+            title: "빠른 시작",
+            body: "⌘⌥⇧T 또는 커맨드 팔레트의 New control session으로 시작합니다.",
+          },
+          {
+            title: "지원 플랫폼",
+            body: "macOS와 Linux를 지원합니다. Windows는 현재 지원하지 않습니다.",
+          },
+        ],
+        link: { label: "Control session 문서", href: links.controlDocs },
+      },
+      {
+        title: "우측 패널",
+        intro: "Code, GitHub, Agents 세 그룹으로 작업 맥락을 한곳에 모읍니다.",
+        items: [
+          {
+            title: "Code: Files / Staged / Commits",
+            body:
+              "파일 트리, 검색, Git 상태, 스테이징 변경, 커밋, Diff 모달을 제공합니다. 터미널의 파일 참조를 클릭해 코드 뷰어로 이동할 수 있습니다.",
+          },
+          {
+            title: "GitHub: PRs / Actions",
+            body:
+              "PR 리스트, 라벨, 체크, CI 시간, 상세 모달, Conversation, Commits, Checks, Files를 확인합니다. PR 본문 task 토글과 AI 머지 메시지 생성도 지원합니다.",
+          },
+          {
+            title: "GitHub Actions",
+            body: "워크플로 실행 목록과 workflow 필터를 앱 안에서 확인해 브라우저 전환을 줄입니다.",
+          },
+          {
+            title: "Agents: Activity / History / Todos",
+            body:
+              "세션별 알림, transcript 히스토리, Claude Code TodoWrite 이벤트 기반 todo 리스트를 확인합니다.",
+          },
+        ],
+      },
+      {
+        title: "코드, Diff, 알림",
+        intro: "코드를 읽고 변경 사항을 확인하고, 세션 이벤트를 놓치지 않도록 돕는 보조 기능입니다.",
+        items: [
+          {
+            title: "Code 뷰어",
+            body: "신택스 하이라이팅, 파일 내 검색, markdown 프리뷰 토글, 외부 에디터로 열기를 제공합니다.",
+          },
+          {
+            title: "Diff 뷰어",
+            body: "변경 사항을 통합 또는 분할 모드로 확인하고, PR이나 커밋 전 검토 흐름에 연결합니다.",
+          },
+          {
+            title: "Activity center",
+            body:
+              "입력 대기, 완료, 실패 알림을 우측 패널 Activity 탭과 상태 표시줄에서 모아 봅니다. 네이티브 알림 이벤트별 토글과 보관 기간 설정을 제공합니다.",
+          },
+        ],
+      },
+      {
+        title: "설정과 시스템 상태",
+        intro: "개인 작업 방식과 macOS 환경에 맞게 앱 동작을 조정합니다.",
+        items: [
+          {
+            title: "UI와 터미널 설정",
+            body: "언어, UI 배율, theme, 배경 이미지, 터미널 폰트 3-slot fallback, 단축키 힌트를 설정합니다.",
+          },
+          {
+            title: "AI 공급자와 외부 도구",
+            body: "Claude, Codex, Antigravity, Ollama, llm, 커스텀 공급자와 외부 에디터 명령을 선택합니다.",
+          },
+          {
+            title: "정리 도구",
+            body: "Background sessions, orphan worktree, 캐시 정리, macOS 보호 폴더 권한 점검과 재설정을 제공합니다.",
+          },
+          {
+            title: "상태 표시줄",
+            body:
+              "메모리와 프로세스별 breakdown, 현재 worktree 브랜치, GitHub 계정 배지, multi-input 상태를 보여줍니다.",
+          },
+          {
+            title: "자동 업데이트",
+            body: "새 macOS 버전을 감지하면 배너를 띄우고, 적용 시점은 사용자가 선택합니다.",
+          },
+        ],
+      },
+    ],
+    shortcutsTitle: "주요 단축키",
+    shortcuts: [
+      ["커맨드 팔레트", "⌘P"],
+      ["새 세션 / isolated / control", "⌘T / ⌘⌥T / ⌘⌥⇧T"],
+      ["새 프로젝트", "⌘⇧N"],
+      ["Pane 분할 세로 / 가로", "⌘D / ⌘⇧D"],
+      ["탭 닫기", "⌘W"],
+      ["사이드바 / 메인 / 우측 패널 포커스", "⌘1 / ⌘2 / ⌘3"],
+      ["사이드바 / 우측 패널 토글", "⌘B / ⌘J"],
+      ["Multi-input 토글", "⌘⌥I"],
+      ["다음 / 이전 세션", "Ctrl+Tab / Ctrl+⇧+Tab"],
+      ["터미널 클리어", "⌘K"],
+      ["설정", "⌘,"],
+    ],
   },
   en: {
     eyebrow: "Features",
-    title: "Everything, in one window",
-    lead: "Multi-pane layout, isolated worktrees, PTY terminals, agent sessions, control sessions, and the right panel — what Acorn gives you.",
+    title: "The full Acorn feature map",
+    lead:
+      "A README-style feature catalog for the site. Scan the workspace, agents, GitHub panel, history, settings, and system features without repeating the landing page.",
+    screenshotAlt: "Acorn main workspace",
+    quickTitle: "At a glance",
+    quickItems: [
+      "Multi-pane tab workspace",
+      "Isolated git worktree per session",
+      "Claude / Codex / Antigravity and other AI CLI sessions",
+      "Code · GitHub · Agents right panel",
+      "Background sessions and Control session",
+      "Activity, History, Todos, and auto-update",
+    ],
+    groups: [
+      {
+        title: "Workspace and projects",
+        intro: "The core surface for splitting, arranging, and returning to parallel work.",
+        items: [
+          {
+            title: "Multi-pane workspace",
+            body:
+              "Split horizontally or vertically, resize freely, drag sessions between panes, and move, clone, or rearrange tabs. Double-click an empty pane to create a session.",
+          },
+          {
+            title: "Multi-input mode",
+            body: "Send the same input to every visible session for repeated commands or parallel checks.",
+          },
+          {
+            title: "Project groups and ordering",
+            body: "Add projects in the app, group them in the sidebar, and reorder projects and sessions by dragging.",
+          },
+          {
+            title: "Isolated git worktrees",
+            body:
+              "Give each session its own worktree so one repository can be worked on in parallel without collisions. Cleanup options include an always-delete mode.",
+          },
+        ],
+      },
+      {
+        title: "Terminal and agent sessions",
+        intro: "Sessions run on native PTYs and start in your shell, so you choose the agent CLI.",
+        items: [
+          {
+            title: "PTY terminal",
+            body: "Native PTY shell sessions restore scrollback on reopen and support clickable file paths and URLs.",
+          },
+          {
+            title: "Run any AI CLI",
+            body:
+              "Every session starts as $SHELL. Run Claude Code, Codex, Antigravity, Ollama, llm, or a custom CLI directly inside it.",
+          },
+          {
+            title: "Session fork",
+            body: "Fork Claude, Codex, or Antigravity sessions into the current pane or a fresh worktree.",
+          },
+          {
+            title: "Automatic tab titles",
+            body: "Agent tab titles update from conversation context so many sessions stay readable.",
+          },
+          {
+            title: "Live session status",
+            body:
+              "The sidebar shows idle, waiting, and working states based on Claude, Codex, and Antigravity transcripts plus hooks.",
+          },
+        ],
+      },
+      {
+        title: "Persistence and background work",
+        intro: "Keep session state and conversation history available across app restarts.",
+        items: [
+          {
+            title: "Conversation UUID tracking",
+            body: "Track Claude, Codex, and Antigravity conversation UUIDs per session and suggest resume on focus.",
+          },
+          {
+            title: "History tab",
+            body: "Browse project transcript history in the right panel and double-click to resume in a new terminal.",
+          },
+          {
+            title: "Background sessions",
+            body:
+              "PTY sessions keep running after quit or restart. Reopen the app to restore the screen, and manage Kill, Restore, and Forget from Services settings.",
+          },
+          {
+            title: "Status bar controls",
+            body: "Check and control background session state from the status bar icon and dropdown.",
+          },
+        ],
+      },
+      {
+        title: "Control session",
+        intro: "An advanced automation mode where one agent session can operate other sessions in the same project.",
+        items: [
+          {
+            title: "Remote session control",
+            body: "Send input, read screens, create sessions, select targets, and close sessions from another session.",
+          },
+          {
+            title: "Quick start",
+            body: "Start with ⌘⌥⇧T or New control session in the command palette.",
+          },
+          {
+            title: "Platform support",
+            body: "Supported on macOS and Linux. Windows is not currently supported.",
+          },
+        ],
+        link: { label: "Control session docs", href: links.controlDocs },
+      },
+      {
+        title: "Right panel",
+        intro: "Code, GitHub, and Agents tabs keep review and coordination work near the terminal.",
+        items: [
+          {
+            title: "Code: Files / Staged / Commits",
+            body:
+              "File tree, search, Git status, staged changes, commits, and a Diff modal. File references from the terminal can open in the code viewer.",
+          },
+          {
+            title: "GitHub: PRs / Actions",
+            body:
+              "PR lists, labels, checks, CI timing, detail modals, conversations, commits, checks, files, task toggles, and AI-generated merge messages.",
+          },
+          {
+            title: "GitHub Actions",
+            body: "Inspect workflow runs and filter by workflow without switching to the browser.",
+          },
+          {
+            title: "Agents: Activity / History / Todos",
+            body:
+              "Session notifications, transcript history, and Claude Code todo lists parsed from TodoWrite events.",
+          },
+        ],
+      },
+      {
+        title: "Code, diff, and alerts",
+        intro: "Supporting tools for reading code, reviewing changes, and tracking session events.",
+        items: [
+          {
+            title: "Code viewer",
+            body: "Syntax highlighting, in-file search, markdown preview toggle, and open-in-external-editor support.",
+          },
+          {
+            title: "Diff viewer",
+            body: "Review changes in unified or split mode before committing or merging.",
+          },
+          {
+            title: "Activity center",
+            body:
+              "Collect waiting, done, and failed events in the right panel and status bar, with native notification toggles and retention settings.",
+          },
+        ],
+      },
+      {
+        title: "Settings and system status",
+        intro: "Tune the app to your workflow and macOS environment.",
+        items: [
+          {
+            title: "UI and terminal settings",
+            body: "Language, UI scale, theme, background image, three-slot terminal font fallback, and shortcut hints.",
+          },
+          {
+            title: "AI providers and external tools",
+            body: "Choose Claude, Codex, Antigravity, Ollama, llm, custom providers, and external editor commands.",
+          },
+          {
+            title: "Cleanup tools",
+            body: "Manage background sessions, orphan worktrees, caches, and macOS protected-folder permission checks.",
+          },
+          {
+            title: "Status bar",
+            body:
+              "Memory and process breakdown, current worktree branch, GitHub account badge, and multi-input state.",
+          },
+          {
+            title: "Auto-update",
+            body: "Detect new macOS releases, show an update banner, and let the user choose when to apply it.",
+          },
+        ],
+      },
+    ],
+    shortcutsTitle: "Core shortcuts",
+    shortcuts: [
+      ["Command palette", "⌘P"],
+      ["New session / isolated / control", "⌘T / ⌘⌥T / ⌘⌥⇧T"],
+      ["New project", "⌘⇧N"],
+      ["Split pane vertical / horizontal", "⌘D / ⌘⇧D"],
+      ["Close tab", "⌘W"],
+      ["Focus sidebar / main / right panel", "⌘1 / ⌘2 / ⌘3"],
+      ["Toggle sidebar / right panel", "⌘B / ⌘J"],
+      ["Toggle multi-input", "⌘⌥I"],
+      ["Next / previous session", "Ctrl+Tab / Ctrl+⇧+Tab"],
+      ["Clear terminal", "⌘K"],
+      ["Settings", "⌘,"],
+    ],
   },
 } as const;
+
 const c = copy[lang];
 ---
 
-<PageHeader eyebrow={c.eyebrow} title={c.title} lead={c.lead} />
-<ValueCards lang={lang} />
-<Features lang={lang} />
-<TechStack lang={lang} />
+<section class="featureHero">
+  <div class="container featureHero__inner">
+    <div class="featureHero__copy reveal">
+      <span class="eyebrow">{c.eyebrow}</span>
+      <h1>{c.title}</h1>
+      <p>{c.lead}</p>
+    </div>
+    <figure class="featureHero__media reveal">
+      <img src={asset("screenshots/workspace.png")} alt={c.screenshotAlt} width="1392" height="912" />
+    </figure>
+  </div>
+</section>
+
+<section class="featureQuick">
+  <div class="container featureQuick__inner reveal">
+    <h2>{c.quickTitle}</h2>
+    <ul>
+      {c.quickItems.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</section>
+
+<section class="featureCatalog">
+  <div class="container featureCatalog__inner">
+    {
+      c.groups.map((group, groupIndex) => (
+        <article class="featureGroup reveal">
+          <header class="featureGroup__head">
+            <span>{String(groupIndex + 1).padStart(2, "0")}</span>
+            <div>
+              <h2>{group.title}</h2>
+              <p>{group.intro}</p>
+            </div>
+          </header>
+
+          <div class="featureGroup__items">
+            {group.items.map((item) => (
+              <section class="featureItem">
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </section>
+            ))}
+          </div>
+
+          {"link" in group && group.link && (
+            <a class="featureGroup__link" href={group.link.href} target="_blank" rel="noopener">
+              {group.link.label}
+            </a>
+          )}
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<section class="shortcuts">
+  <div class="container">
+    <div class="shortcuts__inner reveal">
+      <h2>{c.shortcutsTitle}</h2>
+      <div class="shortcuts__list">
+        {
+          c.shortcuts.map(([label, keys]) => (
+            <div class="shortcut">
+              <span>{label}</span>
+              <code>{keys}</code>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featureHero {
+    padding-block: clamp(3rem, 2.2rem + 4vw, 6rem);
+    border-bottom: 1px solid var(--border);
+  }
+  .featureHero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(280px, 1fr);
+    align-items: center;
+    gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  }
+  .featureHero h1 {
+    margin-top: 0.65rem;
+    font-size: var(--text-h2);
+    max-width: 14ch;
+    text-wrap: balance;
+  }
+  .featureHero p {
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: var(--text-lead);
+    max-width: 42ch;
+  }
+  .featureHero__media {
+    margin: 0;
+    min-width: 0;
+  }
+  .featureHero__media img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+  }
+
+  .featureQuick {
+    padding-block: clamp(2rem, 1.3rem + 3vw, 3.5rem);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .featureQuick__inner {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.24fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 1rem + 3vw, 3rem);
+    align-items: start;
+  }
+  .featureQuick h2 {
+    font-size: var(--text-h3);
+  }
+  .featureQuick ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .featureQuick li {
+    position: relative;
+    padding-left: 1.2rem;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .featureQuick li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.68em;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+
+  .featureCatalog {
+    padding-block: var(--space-section);
+  }
+  .featureCatalog__inner {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 2rem + 4vw, 5rem);
+  }
+  .featureGroup {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.35fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+    padding-bottom: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+    border-bottom: 1px solid var(--border);
+  }
+  .featureGroup:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .featureGroup__head {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem;
+    align-content: start;
+  }
+  .featureGroup__head > span {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+  .featureGroup h2 {
+    font-size: var(--text-h3);
+    text-wrap: balance;
+  }
+  .featureGroup__head p {
+    margin: 0.75rem 0 0;
+    color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+  .featureGroup__items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.35rem 1.6rem;
+  }
+  .featureItem {
+    min-width: 0;
+  }
+  .featureItem h3 {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+  .featureItem p {
+    margin: 0.5rem 0 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.58;
+  }
+  .featureGroup__link {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: -0.25rem;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .featureGroup__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .shortcuts {
+    padding-bottom: var(--space-section);
+  }
+  .shortcuts__inner {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.28fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 1rem + 3vw, 3rem);
+    padding-top: clamp(2rem, 1.5rem + 3vw, 3.5rem);
+    border-top: 1px solid var(--border);
+  }
+  .shortcuts h2 {
+    font-size: var(--text-h3);
+  }
+  .shortcuts__list {
+    display: grid;
+    gap: 0.65rem;
+  }
+  .shortcut {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(120px, auto);
+    gap: 1rem;
+    align-items: baseline;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  }
+  .shortcut span {
+    min-width: 0;
+    color: var(--muted);
+    line-height: 1.35;
+  }
+  .shortcut code {
+    justify-self: end;
+    max-width: 100%;
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.4;
+    text-align: right;
+    white-space: normal;
+  }
+
+  @media (max-width: 860px) {
+    .featureHero__inner,
+    .featureQuick__inner,
+    .featureGroup,
+    .shortcuts__inner {
+      grid-template-columns: 1fr;
+    }
+    .featureHero h1,
+    .featureHero p {
+      max-width: none;
+    }
+    .featureGroup__link {
+      grid-column: 1;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .featureQuick ul,
+    .featureGroup__items {
+      grid-template-columns: 1fr;
+    }
+    .featureGroup__head {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+    .shortcut {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+    .shortcut code {
+      justify-self: start;
+      text-align: left;
+    }
+  }
+</style>
