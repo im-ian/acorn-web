@@ -27,11 +27,11 @@ export const values: ValueItem[] = [
     },
   },
   {
-    icon: "🛰️",
-    title: { ko: "Control session", en: "Control sessions" },
+    icon: "🐙",
+    title: { ko: "화면 전환 없는 GitHub", en: "GitHub without switching" },
     body: {
-      ko: "한 세션의 AI가 같은 프로젝트의 다른 세션을 직접 조작 — 입력 전송, 화면 읽기, 새 세션 생성·선택·종료.",
-      en: "Let the AI in one session drive other sessions of the same project — send input, read the screen, and create, select, or close sessions.",
+      ko: "PR · Actions · 체크 · diff 를 우측 패널에서 바로 — 브라우저로 오갈 필요 없이. 머지 메시지는 AI로 자동 생성.",
+      en: "PRs, Actions, checks, and diffs right in the side panel — no jumping to the browser. Merge messages drafted by AI.",
     },
   },
 ];
