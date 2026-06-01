@@ -96,8 +96,8 @@ export const techPoints: TechPoint[] = [
   {
     k: { ko: "worktree 격리", en: "Worktree isolation" },
     v: {
-      ko: "세션 = 브랜치 = worktree. 동시 작업이 서로를 깨뜨리지 않습니다.",
-      en: "Session = branch = worktree. Parallel work never clobbers itself.",
+      ko: "세션마다 worktree를 분리해, 동시 작업이 서로를 깨뜨리지 않습니다.",
+      en: "A separate worktree per session keeps parallel work from clobbering itself.",
     },
   },
   {
