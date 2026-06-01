@@ -19,11 +19,11 @@ export const values: ValueItem[] = [
     },
   },
   {
-    icon: "🌳",
-    title: { ko: "격리된 git worktree", en: "Isolated git worktrees" },
+    icon: "🔔",
+    title: { ko: "알림 센터", en: "Activity center" },
     body: {
-      ko: "세션마다 별도 worktree로 같은 저장소를 안전하게 동시 작업. 종료 시 worktree 정리 옵션까지.",
-      en: "Each session runs in its own worktree, so you work the same repo in parallel without stepping on yourself. Clean worktrees up on exit.",
+      ko: "세션별 알림(입력 대기·완료·실패)을 Activity 탭과 상태 표시줄에서 모아 보기. 네이티브 알림은 이벤트별로 토글.",
+      en: "Collect per-session alerts (waiting · done · failed) in the Activity tab and status bar — toggle native notifications per event.",
     },
   },
   {
