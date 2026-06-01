@@ -87,10 +87,10 @@ export const techPoints: TechPoint[] = [
     },
   },
   {
-    k: { ko: "어떤 AI CLI든", en: "Any AI CLI" },
+    k: { ko: "Control session", en: "Control sessions" },
     v: {
-      ko: "세션은 $SHELL로 시작 — Claude·Codex·Antigravity·Ollama·llm을 그대로 실행, 벤더 락인 없음.",
-      en: "Sessions start in $SHELL — run Claude, Codex, Antigravity, Ollama, or llm as-is, no vendor lock-in.",
+      ko: "한 세션의 AI가 같은 프로젝트의 다른 세션을 조종 — 입력 전송, 화면 읽기, 세션 생성·종료.",
+      en: "An AI in one session drives others in the same project — send input, read the screen, create or close sessions.",
     },
   },
   {
