@@ -1,37 +1,202 @@
 ---
-import { useTranslations, type Lang } from "~/i18n/ui";
+import { type Lang } from "~/i18n/ui";
 import { asset } from "~/lib/site";
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
-const t = useTranslations(lang);
+
+const labels: Record<Lang, string[]> = {
+  ko: ["워크스페이스", "PR 관리", "Control session"],
+  en: ["Workspace", "Pull requests", "Control session"],
+};
+
+const slides = [
+  { src: "screenshots/workspace.png", w: 1392, h: 912 },
+  { src: "screenshots/pr-modal.png", w: 1392, h: 912 },
+  { src: "screenshots/control-session.gif", w: 1200, h: 786 },
+].map((s, i) => ({ ...s, label: labels[lang][i] ?? labels.en[i] }));
 ---
 
 <section class="pw">
   <div class="container">
-    <img
-      class="pw__shot reveal"
-      src={asset("screenshots/workspace.png")}
-      width="1392"
-      height="912"
-      alt={t("window.caption")}
-      loading="lazy"
-      decoding="async"
-    />
+    <div class="carousel reveal" data-carousel>
+      <div class="carousel__viewport">
+        {
+          slides.map((s, i) => (
+            <figure class="carousel__slide" data-active={i === 0 ? "true" : "false"}>
+              <img
+                src={asset(s.src)}
+                width={s.w}
+                height={s.h}
+                alt={s.label}
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+                fetchpriority={i === 0 ? "high" : "auto"}
+              />
+            </figure>
+          ))
+        }
+
+        <button class="carousel__arrow carousel__arrow--prev" data-prev aria-label="Previous">‹</button>
+        <button class="carousel__arrow carousel__arrow--next" data-next aria-label="Next">›</button>
+      </div>
+
+      <div class="carousel__dots" role="tablist">
+        {
+          slides.map((s, i) => (
+            <button
+              class="carousel__dot"
+              data-index={i}
+              role="tab"
+              aria-selected={i === 0 ? "true" : "false"}
+              aria-label={s.label}
+            />
+          ))
+        }
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-carousel]");
+  if (root) {
+    const slides = [...root.querySelectorAll<HTMLElement>(".carousel__slide")];
+    const dots = [...root.querySelectorAll<HTMLButtonElement>(".carousel__dot")];
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const DELAY = 4500;
+    let index = 0;
+    let timer: number | undefined;
+
+    const show = (next: number) => {
+      index = (next + slides.length) % slides.length;
+      slides.forEach((s, i) => s.dataset.active = i === index ? "true" : "false");
+      dots.forEach((d, i) => d.setAttribute("aria-selected", i === index ? "true" : "false"));
+    };
+
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = undefined;
+    };
+    const start = () => {
+      if (reduce || timer) return;
+      timer = window.setInterval(() => show(index + 1), DELAY);
+    };
+
+    dots.forEach((d, i) =>
+      d.addEventListener("click", () => {
+        show(i);
+        stop();
+        start();
+      })
+    );
+    root.querySelector("[data-prev]")?.addEventListener("click", () => {
+      show(index - 1);
+      stop();
+      start();
+    });
+    root.querySelector("[data-next]")?.addEventListener("click", () => {
+      show(index + 1);
+      stop();
+      start();
+    });
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    document.addEventListener("visibilitychange", () =>
+      document.hidden ? stop() : start()
+    );
+
+    start();
+  }
+</script>
 
 <style>
   .pw {
     padding-top: clamp(1rem, 0.5rem + 2vw, 2.5rem);
   }
-  .pw__shot {
-    display: block;
-    width: 100%;
-    height: auto;
+  .carousel {
     max-width: 980px;
     margin-inline: auto;
+  }
+  .carousel__viewport {
+    position: relative;
+    aspect-ratio: 1392 / 912;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+  .carousel__slide {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  .carousel__slide[data-active="true"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .carousel__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--ink);
+    background: color-mix(in oklab, var(--bg) 78%, transparent);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+  }
+  .carousel:hover .carousel__arrow,
+  .carousel__arrow:focus-visible {
+    opacity: 1;
+  }
+  .carousel__arrow--prev {
+    left: 12px;
+  }
+  .carousel__arrow--next {
+    right: 12px;
+  }
+  .carousel__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .carousel__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: var(--border);
+    cursor: pointer;
+    transition: background-color 0.2s ease, width 0.2s ease;
+  }
+  .carousel__dot[aria-selected="true"] {
+    width: 22px;
+    background: var(--accent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .carousel__slide {
+      transition: none;
+    }
   }
 </style>

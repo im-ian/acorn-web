@@ -11,7 +11,6 @@ export type SectionKey =
   | "hero"
   | "window"
   | "values"
-  | "features"
   | "tech"
   | "install"
   | "cta";
@@ -20,7 +19,6 @@ export const sectionOrder: SectionKey[] = [
   "hero",
   "window",
   "values",
-  "features",
   "tech",
   "install",
   "cta",
