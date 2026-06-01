@@ -22,7 +22,7 @@ export const values: ValueItem[] = [
     icon: "🔔",
     title: { ko: "알림 센터", en: "Activity center" },
     body: {
-      ko: "세션별 알림(입력 대기·완료·실패)을 Activity 탭과 상태 표시줄에서 모아 보기. 원하는 이벤트만 macOS 알림으로 받도록 설정할 수 있습니다.",
+      ko: "세션별 알림(입력 대기·완료·실패)을 Activity 탭과 상태 표시줄에서 모아 보기. 원하는 이벤트만 macOS 알림으로 받도록 설정.",
       en: "Collect per-session alerts (waiting · done · failed) in the Activity tab and status bar — and pick which events also fire a macOS notification.",
     },
   },
