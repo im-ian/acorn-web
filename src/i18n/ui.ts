@@ -14,7 +14,7 @@ export const ui = {
     "nav.download": "macOS 다운로드",
 
     "hero.title": "Acorn",
-    "hero.slogan": "코딩 에이전트와 편의 기능들을 한곳에.",
+    "hero.slogan": "코딩 에이전트들과 편의 기능들을 한곳에.",
     "hero.better": "더 나은",
     "hero.words": "생산성,효율성,편의성,집중력",
     "hero.tagline":
