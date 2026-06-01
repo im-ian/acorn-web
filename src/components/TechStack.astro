@@ -7,6 +7,14 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+// worktree branches with each tool's brand color
+const branches = [
+  { label: "worktree · claude", color: "#d97757" },
+  { label: "worktree · codex", color: "#10a37f" },
+  { label: "worktree · antigravity", color: "#4285f4" },
+  { label: "worktree · shell", color: "#767881" },
+];
 ---
 
 <section class="section tech">
@@ -31,11 +39,11 @@ const t = useTranslations(lang);
         <div class="repo">repo</div>
         <div class="branches">
           {
-            ["worktree · claude", "worktree · codex", "worktree · shell"].map((b, i) => (
+            branches.map((b) => (
               <div class="branch">
                 <span class="branch__line" />
-                <span class:list={["branch__node", `n${i}`]} />
-                <code>{b}</code>
+                <span class="branch__node" style={`background:${b.color}`} />
+                <code>{b.label}</code>
               </div>
             ))
           }
@@ -111,13 +119,7 @@ const t = useTranslations(lang);
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background: var(--accent);
-  }
-  .branch__node.n1 {
-    background: var(--status-wait);
-  }
-  .branch__node.n2 {
-    background: var(--muted);
+    flex-shrink: 0;
   }
   .tech__list {
     list-style: none;
