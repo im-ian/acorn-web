@@ -30,7 +30,7 @@ export const values: ValueItem[] = [
     icon: "🐙",
     title: { ko: "화면 전환 없는 GitHub", en: "GitHub without switching" },
     body: {
-      ko: "PR · Actions · 체크 · diff 를 우측 패널에서 바로 — 브라우저로 오갈 필요 없이. 머지 메시지는 AI로 자동 생성.",
+      ko: "PR · Actions · 체크 · diff 를 우측 패널에서 화면 전환 필요 없이 바로. 머지 메시지는 AI로 자동 생성.",
       en: "PRs, Actions, checks, and diffs right in the side panel — no jumping to the browser. Merge messages drafted by AI.",
     },
   },
