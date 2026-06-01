@@ -96,8 +96,8 @@ export const techPoints: TechPoint[] = [
   {
     k: { ko: "간편한 작업 공간 분리", en: "Easy workspace separation" },
     v: {
-      ko: "간편하게 worktree 분리된 새 세션에서 같은 저장소를 충돌 없이 병렬 작업.",
-      en: "Spin up a worktree-separated session to work the same repo in parallel, conflict-free.",
+      ko: "간편하게 worktree 분리된 새 세션에서 같은 저장소를 충돌 없이 병렬 작업. 작업 후 worktree 정리도 간편하게.",
+      en: "Spin up a worktree-separated session to work the same repo in parallel, conflict-free — and clean worktrees up just as easily when you're done.",
     },
   },
   {
