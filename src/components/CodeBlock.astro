@@ -8,7 +8,7 @@ const { code, copyLabel, doneLabel } = Astro.props;
 ---
 
 <div class="codeblock">
-  <code>{code}</code>
+  <div class="codeblock__scroll"><code>{code}</code></div>
   <button class="codeblock__copy" data-label-copy={copyLabel} data-label-done={doneLabel}>
     {copyLabel}
   </button>
@@ -38,25 +38,39 @@ const { code, copyLabel, doneLabel } = Astro.props;
 
 <style>
   .codeblock {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 0.9rem 0.9rem 0.9rem 1.2rem;
+    position: relative;
     background: var(--terminal-bg);
     border-radius: 12px;
-    text-align: left;
+  }
+  .codeblock__scroll {
     overflow-x: auto;
+    padding: 0.7rem 1.1rem;
+    padding-right: 5.25rem;
   }
   .codeblock code {
-    flex: 1;
     font-family: var(--font-mono);
     font-size: 0.85rem;
-    line-height: 1.6;
+    line-height: 1.5;
     color: var(--terminal-fg);
     white-space: pre;
   }
+  /* fade the right edge so scrolling code slips cleanly under the button */
+  .codeblock::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    width: 4.5rem;
+    border-radius: 0 12px 12px 0;
+    background: linear-gradient(to right, transparent, var(--terminal-bg) 55%);
+    pointer-events: none;
+  }
   .codeblock__copy {
-    flex-shrink: 0;
+    position: absolute;
+    top: 0.55rem;
+    right: 0.55rem;
+    z-index: 2;
     font-family: var(--font-sans);
     font-size: 0.78rem;
     font-weight: 500;
@@ -64,7 +78,7 @@ const { code, copyLabel, doneLabel } = Astro.props;
     background: var(--terminal-fg);
     border: none;
     border-radius: 7px;
-    padding: 0.45rem 0.8rem;
+    padding: 0.4rem 0.75rem;
     cursor: pointer;
   }
   .codeblock__copy.is-done {
