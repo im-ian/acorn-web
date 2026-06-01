@@ -1,0 +1,140 @@
+---
+import { useTranslations, type Lang } from "~/i18n/ui";
+import { techPoints, t as L } from "~/data/content";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="section tech">
+  <div class="container tech__inner">
+    <div class="tech__intro reveal">
+      <span class="eyebrow">{t("tech.eyebrow")}</span>
+      <h2>{t("tech.title")}</h2>
+      <p>{t("tech.lead")}</p>
+
+      <div class="tech__diagram" aria-hidden="true">
+        <div class="repo">repo</div>
+        <div class="branches">
+          {
+            ["worktree · claude", "worktree · codex", "worktree · shell"].map((b, i) => (
+              <div class="branch">
+                <span class="branch__line" />
+                <span class:list={["branch__node", `n${i}`]} />
+                <code>{b}</code>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <ul class="tech__list">
+      {
+        techPoints.map((p) => (
+          <li class="reveal">
+            <strong>{L(p.k, lang)}</strong>
+            <span>{L(p.v, lang)}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .tech {
+    background: var(--surface);
+    border-block: 1px solid var(--border);
+  }
+  .tech__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+    align-items: start;
+  }
+  .tech__intro h2 {
+    margin-top: 0.7rem;
+    font-size: var(--text-h2);
+  }
+  .tech__intro p {
+    margin-top: 0.9rem;
+    color: var(--muted);
+    font-size: var(--text-lead);
+    max-width: 40ch;
+  }
+  .tech__diagram {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .repo {
+    padding: 0.5rem 0.9rem;
+    background: var(--terminal-bg);
+    color: var(--terminal-fg);
+    border-radius: 8px;
+  }
+  .branches {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .branch {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+  }
+  .branch__line {
+    width: 26px;
+    height: 1px;
+    background: var(--border);
+  }
+  .branch__node {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .branch__node.n1 {
+    background: var(--status-wait);
+  }
+  .branch__node.n2 {
+    background: var(--muted);
+  }
+  .tech__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .tech__list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .tech__list li:first-child {
+    border-top: none;
+  }
+  .tech__list strong {
+    font-weight: 600;
+  }
+  .tech__list span {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  @media (max-width: 860px) {
+    .tech__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

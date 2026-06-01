@@ -1,0 +1,10 @@
+---
+import Base from "~/layouts/Base.astro";
+import FeaturesPage from "~/components/FeaturesPage.astro";
+
+const lang = "en" as const;
+---
+
+<Base lang={lang} title="Features — Acorn" description="Multi-pane layout, isolated worktrees, control sessions, and more.">
+  <FeaturesPage lang={lang} />
+</Base>

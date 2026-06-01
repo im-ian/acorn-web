@@ -1,0 +1,82 @@
+---
+import { useTranslations, type Lang } from "~/i18n/ui";
+import { values, t as L } from "~/data/content";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="section values">
+  <div class="container">
+    <header class="values__head reveal">
+      <h2>{t("value.title")}</h2>
+      <p>{t("value.lead")}</p>
+    </header>
+
+    <div class="values__grid">
+      {
+        values.map((v) => (
+          <article class="vcard reveal">
+            <div class="vcard__icon" aria-hidden="true">
+              {v.icon}
+            </div>
+            <h3>{L(v.title, lang)}</h3>
+            <p>{L(v.body, lang)}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .values__head {
+    max-width: 40ch;
+  }
+  .values__head h2 {
+    font-size: var(--text-h2);
+  }
+  .values__head p {
+    margin-top: 0.9rem;
+    color: var(--muted);
+    font-size: var(--text-lead);
+  }
+  .values__grid {
+    margin-top: clamp(2rem, 1rem + 3vw, 3.5rem);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .vcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 1.6rem 1.5rem;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .vcard:hover {
+    border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
+    transform: translateY(-3px);
+  }
+  .vcard__icon {
+    font-size: 1.7rem;
+    line-height: 1;
+  }
+  .vcard h3 {
+    margin-top: 1rem;
+    font-size: var(--text-h3);
+  }
+  .vcard p {
+    margin-top: 0.6rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  @media (max-width: 860px) {
+    .values__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

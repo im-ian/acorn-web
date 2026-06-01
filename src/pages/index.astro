@@ -1,0 +1,12 @@
+---
+import Base from "~/layouts/Base.astro";
+import Landing from "~/components/Landing.astro";
+import { useTranslations } from "~/i18n/ui";
+
+const lang = "ko" as const;
+const t = useTranslations(lang);
+---
+
+<Base lang={lang} title="Acorn — 병렬 AI 코딩 에이전트" description={t("hero.tagline")}>
+  <Landing lang={lang} />
+</Base>

@@ -1,0 +1,90 @@
+---
+import { useTranslations, type Lang } from "~/i18n/ui";
+import { features, t as L } from "~/data/content";
+import { asset } from "~/lib/site";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="section features">
+  <div class="container">
+    <h2 class="features__title reveal">{t("features.title")}</h2>
+
+    <div class="features__rows">
+      {
+        features.map((f, i) => (
+          <article class:list={["frow reveal", { "frow--rev": i % 2 === 1 }]}>
+            <div class="frow__text">
+              <h3>{L(f.title, lang)}</h3>
+              <p>{L(f.body, lang)}</p>
+            </div>
+            <div class="frow__media">
+              <img
+                src={asset(f.image)}
+                alt={L(f.alt, lang)}
+                loading="lazy"
+                decoding="async"
+                width="1392"
+                height="912"
+              />
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .features__title {
+    font-size: var(--text-h2);
+    max-width: 24ch;
+  }
+  .features__rows {
+    margin-top: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+  .frow {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: center;
+    gap: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+  }
+  .frow--rev .frow__text {
+    order: 2;
+  }
+  .frow__text h3 {
+    font-size: var(--text-h3);
+  }
+  .frow__text p {
+    margin-top: 0.8rem;
+    color: var(--muted);
+    font-size: var(--text-lead);
+    max-width: 38ch;
+  }
+  .frow__media {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 20px 50px -28px rgba(0, 0, 0, 0.3);
+  }
+  .frow__media img {
+    width: 100%;
+    height: auto;
+  }
+  @media (max-width: 800px) {
+    .frow {
+      grid-template-columns: 1fr;
+    }
+    .frow--rev .frow__text {
+      order: 0;
+    }
+  }
+</style>

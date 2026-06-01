@@ -1,0 +1,73 @@
+---
+interface Props {
+  code: string;
+  copyLabel: string;
+  doneLabel: string;
+}
+const { code, copyLabel, doneLabel } = Astro.props;
+---
+
+<div class="codeblock">
+  <code>{code}</code>
+  <button class="codeblock__copy" data-label-copy={copyLabel} data-label-done={doneLabel}>
+    {copyLabel}
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".codeblock__copy").forEach((btn) => {
+    if (btn.dataset.bound) return;
+    btn.dataset.bound = "1";
+    btn.addEventListener("click", async () => {
+      const code = btn.closest(".codeblock")?.querySelector("code");
+      const text = code?.textContent ?? "";
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = btn.dataset.labelDone ?? "Copied";
+        btn.classList.add("is-done");
+        setTimeout(() => {
+          btn.textContent = btn.dataset.labelCopy ?? "Copy";
+          btn.classList.remove("is-done");
+        }, 1600);
+      } catch {
+        /* clipboard unavailable */
+      }
+    });
+  });
+</script>
+
+<style>
+  .codeblock {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.9rem 0.9rem 0.9rem 1.2rem;
+    background: var(--terminal-bg);
+    border-radius: 12px;
+    text-align: left;
+    overflow-x: auto;
+  }
+  .codeblock code {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--terminal-fg);
+    white-space: pre;
+  }
+  .codeblock__copy {
+    flex-shrink: 0;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--terminal-bg);
+    background: var(--terminal-fg);
+    border: none;
+    border-radius: 7px;
+    padding: 0.45rem 0.8rem;
+    cursor: pointer;
+  }
+  .codeblock__copy.is-done {
+    background: var(--status-run);
+  }
+</style>

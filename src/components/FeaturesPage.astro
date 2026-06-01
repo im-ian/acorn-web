@@ -1,0 +1,31 @@
+---
+import type { Lang } from "~/i18n/ui";
+import PageHeader from "~/components/PageHeader.astro";
+import ValueCards from "~/components/ValueCards.astro";
+import Features from "~/components/Features.astro";
+import TechStack from "~/components/TechStack.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const copy = {
+  ko: {
+    eyebrow: "기능",
+    title: "한 창에 담은 전체 기능",
+    lead: "다중 Pane, 격리 worktree, PTY 터미널, 에이전트 세션, Control session, 우측 패널까지 — Acorn이 제공하는 것들.",
+  },
+  en: {
+    eyebrow: "Features",
+    title: "Everything, in one window",
+    lead: "Multi-pane layout, isolated worktrees, PTY terminals, agent sessions, control sessions, and the right panel — what Acorn gives you.",
+  },
+} as const;
+const c = copy[lang];
+---
+
+<PageHeader eyebrow={c.eyebrow} title={c.title} lead={c.lead} />
+<ValueCards lang={lang} />
+<Features lang={lang} />
+<TechStack lang={lang} />

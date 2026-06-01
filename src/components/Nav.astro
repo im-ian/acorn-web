@@ -1,0 +1,88 @@
+---
+import { useTranslations, type Lang } from "~/i18n/ui";
+import { asset, localeHref, links } from "~/lib/site";
+import LangToggle from "~/components/LangToggle.astro";
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+const { lang, path } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href={localeHref(lang, "")}>
+      <img src={asset("acorn-icon-256.png")} width="24" height="24" alt="" />
+      <span>Acorn</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Main">
+      <a href={localeHref(lang, "features")}>{t("nav.features")}</a>
+      <a href={localeHref(lang, "install")}>{t("nav.install")}</a>
+      <a href={links.repo} target="_blank" rel="noopener">{t("nav.docs")}</a>
+    </nav>
+
+    <div class="nav__right">
+      <LangToggle lang={lang} path={path} />
+      <a class="pill pill--primary nav__dl" href={links.releasesLatest} target="_blank" rel="noopener">
+        {t("nav.download")}
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in oklab, var(--bg) 80%, transparent);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    gap: 1rem;
+  }
+  .nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .nav__links {
+    display: flex;
+    gap: 1.4rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .nav__links a:hover {
+    color: var(--ink);
+  }
+  .nav__right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .nav__dl {
+    padding: 0.5rem 0.95rem;
+    font-size: 0.8125rem;
+  }
+  @media (max-width: 720px) {
+    .nav__links {
+      display: none;
+    }
+  }
+  @media (max-width: 480px) {
+    .nav__dl {
+      display: none;
+    }
+  }
+</style>

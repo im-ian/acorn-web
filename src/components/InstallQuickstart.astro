@@ -1,0 +1,56 @@
+---
+import { useTranslations, type Lang } from "~/i18n/ui";
+import { installCommand, localeHref } from "~/lib/site";
+import CodeBlock from "~/components/CodeBlock.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="section install">
+  <div class="container install__inner reveal">
+    <span class="eyebrow">{t("install.eyebrow")}</span>
+    <h2>{t("install.title")}</h2>
+    <p>{t("install.lead")}</p>
+
+    <div class="install__code">
+      <CodeBlock code={installCommand} copyLabel={t("install.copy")} doneLabel={t("install.copied")} />
+    </div>
+
+    <a class="install__more" href={localeHref(lang, "install")}>{t("install.manual")} →</a>
+  </div>
+</section>
+
+<style>
+  .install__inner {
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .install__inner h2 {
+    margin-top: 0.7rem;
+    font-size: var(--text-h2);
+  }
+  .install__inner p {
+    margin-top: 0.9rem;
+    color: var(--muted);
+    font-size: var(--text-lead);
+  }
+  .install__code {
+    margin-top: 1.8rem;
+  }
+  .install__more {
+    display: inline-block;
+    margin-top: 1.4rem;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .install__more:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

@@ -1,0 +1,10 @@
+---
+import Base from "~/layouts/Base.astro";
+import FeaturesPage from "~/components/FeaturesPage.astro";
+
+const lang = "ko" as const;
+---
+
+<Base lang={lang} title="기능 — Acorn" description="다중 Pane, 격리 worktree, Control session 등 Acorn의 전체 기능.">
+  <FeaturesPage lang={lang} />
+</Base>

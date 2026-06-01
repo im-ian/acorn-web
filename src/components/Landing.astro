@@ -1,0 +1,34 @@
+---
+import type { Lang } from "~/i18n/ui";
+import { sectionOrder, type SectionKey } from "~/config/landing";
+
+import Hero from "~/components/Hero.astro";
+import ProductWindow from "~/components/ProductWindow.astro";
+import ValueCards from "~/components/ValueCards.astro";
+import Features from "~/components/Features.astro";
+import TechStack from "~/components/TechStack.astro";
+import InstallQuickstart from "~/components/InstallQuickstart.astro";
+import CTASection from "~/components/CTASection.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const sections: Record<SectionKey, any> = {
+  hero: Hero,
+  window: ProductWindow,
+  values: ValueCards,
+  features: Features,
+  tech: TechStack,
+  install: InstallQuickstart,
+  cta: CTASection,
+};
+---
+
+{
+  sectionOrder.map((key) => {
+    const Section = sections[key];
+    return <Section lang={lang} />;
+  })
+}

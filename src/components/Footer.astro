@@ -1,0 +1,85 @@
+---
+import { useTranslations, type Lang } from "~/i18n/ui";
+import { asset, links, localeHref } from "~/lib/site";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a class="footer__logo" href={localeHref(lang, "")}>
+        <img src={asset("acorn-icon-256.png")} width="28" height="28" alt="" />
+        <span>Acorn</span>
+      </a>
+      <p>{t("footer.tagline")}</p>
+    </div>
+
+    <nav class="footer__links" aria-label="Footer">
+      <a href={localeHref(lang, "features")}>{t("nav.features")}</a>
+      <a href={localeHref(lang, "install")}>{t("nav.install")}</a>
+      <a href={links.repo} target="_blank" rel="noopener">GitHub</a>
+      <a href={links.releasesLatest} target="_blank" rel="noopener">Releases</a>
+    </nav>
+  </div>
+
+  <div class="container footer__meta">
+    <span>{t("footer.made")} <a href={links.author} target="_blank" rel="noopener">@im-ian</a> 🐿️</span>
+    <span>{t("footer.rights")}</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    padding-block: clamp(2.5rem, 1.5rem + 4vw, 4rem) 2rem;
+  }
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+  .footer__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+  }
+  .footer__brand p {
+    margin: 0.6rem 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    max-width: 28ch;
+  }
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    height: fit-content;
+  }
+  .footer__links a:hover {
+    color: var(--ink);
+  }
+  .footer__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+  .footer__meta a {
+    color: var(--accent);
+  }
+</style>

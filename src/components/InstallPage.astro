@@ -1,0 +1,109 @@
+---
+import { useTranslations, type Lang } from "~/i18n/ui";
+import { installCommand, links } from "~/lib/site";
+import PageHeader from "~/components/PageHeader.astro";
+import CodeBlock from "~/components/CodeBlock.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const copy = {
+  ko: {
+    title: "Acorn 설치 (macOS)",
+    lead: "Apple Silicon · Intel 모두 지원. 가장 빠른 방법은 설치 스크립트입니다.",
+    steps: [
+      {
+        h: "1. 설치 스크립트",
+        d: "최신 릴리스 DMG를 받아 /Applications/Acorn.app 에 복사하고 quarantine 속성을 제거합니다.",
+        code: installCommand,
+      },
+      {
+        h: "2. 수동 DMG",
+        d: "Releases에서 aarch64(Apple Silicon) 또는 x64(Intel) DMG를 받아 Applications로 복사한 뒤 quarantine 속성을 제거합니다.",
+        code: "xattr -dr com.apple.quarantine /Applications/Acorn.app",
+      },
+      {
+        h: "3. 소스에서 빌드",
+        d: "요구사항: pnpm 9.x · Rust stable · Xcode CLT. 사이드카를 먼저 빌드해야 합니다.",
+        code: "pnpm install\npnpm run build:sidecar\npnpm run tauri build",
+      },
+    ],
+    note: "Acorn은 ad-hoc 빌드입니다. quarantine 제거는 Gatekeeper 플래그만 떼는 단계로 앱 무결성에는 영향이 없습니다.",
+    releases: "Releases 열기",
+  },
+  en: {
+    title: "Install Acorn (macOS)",
+    lead: "Apple Silicon and Intel supported. The install script is the fastest path.",
+    steps: [
+      {
+        h: "1. Install script",
+        d: "Downloads the latest release DMG, copies it to /Applications/Acorn.app, and strips the quarantine attribute.",
+        code: installCommand,
+      },
+      {
+        h: "2. Manual DMG",
+        d: "Grab the aarch64 (Apple Silicon) or x64 (Intel) DMG from Releases, copy it to Applications, then remove the quarantine attribute.",
+        code: "xattr -dr com.apple.quarantine /Applications/Acorn.app",
+      },
+      {
+        h: "3. Build from source",
+        d: "Requires pnpm 9.x · Rust stable · Xcode CLT. Build the sidecar first.",
+        code: "pnpm install\npnpm run build:sidecar\npnpm run tauri build",
+      },
+    ],
+    note: "Acorn ships as an ad-hoc build. Removing quarantine only clears the Gatekeeper flag and does not affect app integrity.",
+    releases: "Open Releases",
+  },
+} as const;
+const c = copy[lang];
+---
+
+<PageHeader eyebrow={t("nav.install")} title={c.title} lead={c.lead} />
+
+<section class="section">
+  <div class="container install-steps">
+    {
+      c.steps.map((s) => (
+        <article class="istep reveal">
+          <h2>{s.h}</h2>
+          <p>{s.d}</p>
+          <CodeBlock code={s.code} copyLabel={t("install.copy")} doneLabel={t("install.copied")} />
+        </article>
+      ))
+    }
+
+    <p class="istep__note reveal">{c.note}</p>
+
+    <a class="pill pill--primary reveal" href={links.releasesLatest} target="_blank" rel="noopener">
+      {c.releases}
+    </a>
+  </div>
+</section>
+
+<style>
+  .install-steps {
+    max-width: 760px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 1.5rem + 2vw, 3rem);
+  }
+  .istep h2 {
+    font-size: var(--text-h3);
+  }
+  .istep p {
+    margin: 0.6rem 0 1rem;
+    color: var(--muted);
+  }
+  .istep__note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 1rem 1.2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+</style>
