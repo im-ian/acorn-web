@@ -49,7 +49,7 @@ export const ui = {
     "cta.download": "macOS 다운로드",
     "cta.star": "GitHub에 ⭐",
 
-    "footer.tagline": "병렬 AI 코딩 에이전트 세션을 한 창에서.",
+    "footer.tagline": "코딩 에이전트들과 편의 기능들을 한곳에.",
     "footer.made": "제작",
     "footer.rights": "issues / PRs welcome",
 
@@ -97,7 +97,7 @@ export const ui = {
     "cta.download": "Download for macOS",
     "cta.star": "Star on GitHub",
 
-    "footer.tagline": "Parallel AI coding agent sessions in one window.",
+    "footer.tagline": "Coding agents and conveniences, all in one place.",
     "footer.made": "Made by",
     "footer.rights": "issues / PRs welcome",
 
