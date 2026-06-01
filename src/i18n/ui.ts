@@ -35,7 +35,7 @@ export const ui = {
     "features.title": "한 창에 필요한 모든 것",
 
     "tech.eyebrow": "아키텍처",
-    "tech.title": "네이티브로 빠르게, 격리로 안전하게",
+    "tech.title": "네이티브로 빠르게,\n격리로 안전하게",
     "tech.lead":
       "Tauri 2 · React 19 · Rust 로 만든 데스크톱 앱. 세션마다 별도 git worktree 로 같은 저장소를 안전하게 동시 작업합니다.",
 
@@ -85,7 +85,7 @@ export const ui = {
     "features.title": "Everything in one window",
 
     "tech.eyebrow": "Architecture",
-    "tech.title": "Native speed, isolated safety",
+    "tech.title": "Native speed,\nisolated safety",
     "tech.lead":
       "A desktop app built with Tauri 2 · React 19 · Rust. Each session gets its own git worktree so you work the same repo in parallel, safely.",
 

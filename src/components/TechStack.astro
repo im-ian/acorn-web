@@ -13,7 +13,18 @@ const t = useTranslations(lang);
   <div class="container tech__inner">
     <div class="tech__intro reveal">
       <span class="eyebrow">{t("tech.eyebrow")}</span>
-      <h2>{t("tech.title")}</h2>
+      <h2>
+        {
+          t("tech.title")
+            .split("\n")
+            .map((line, i) => (
+              <Fragment>
+                {i > 0 && <br />}
+                {line}
+              </Fragment>
+            ))
+        }
+      </h2>
       <p>{t("tech.lead")}</p>
 
       <div class="tech__diagram" aria-hidden="true">
