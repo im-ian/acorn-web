@@ -89,7 +89,7 @@ export const techPoints: TechPoint[] = [
   {
     k: { ko: "Control session", en: "Control sessions" },
     v: {
-      ko: "컨트롤 세션으로 같은 프로젝트의 세션들을 중앙에서 제어 — 원격으로 생성·조작·읽기·종료.",
+      ko: "컨트롤 세션으로 같은 프로젝트의 세션들을 중앙 제어 — 원격으로 생성·조작·읽기·종료.",
       en: "Centrally control the project's sessions through a control session — create, drive, read, and close them remotely.",
     },
   },
