@@ -11,23 +11,15 @@ const t = useTranslations(lang);
 
 <section class="pw">
   <div class="container">
-    <figure class="pw__frame reveal">
-      <div class="pw__chrome">
-        <span class="pw__dot" style="background:var(--status-wait)"></span>
-        <span class="pw__dot"></span>
-        <span class="pw__dot"></span>
-        <span class="pw__path">acorn — ~/project</span>
-      </div>
-      <img
-        src={asset("screenshots/workspace.png")}
-        width="1392"
-        height="912"
-        alt={t("window.caption")}
-        loading="lazy"
-        decoding="async"
-      />
-      <figcaption>{t("window.caption")}</figcaption>
-    </figure>
+    <img
+      class="pw__shot reveal"
+      src={asset("screenshots/workspace.png")}
+      width="1392"
+      height="912"
+      alt={t("window.caption")}
+      loading="lazy"
+      decoding="async"
+    />
   </div>
 </section>
 
@@ -35,45 +27,13 @@ const t = useTranslations(lang);
   .pw {
     padding-top: clamp(1rem, 0.5rem + 2vw, 2.5rem);
   }
-  .pw__frame {
-    margin: 0;
-    max-width: 980px;
-    margin-inline: auto;
-    background: var(--terminal-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    overflow: hidden;
-    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.35);
-  }
-  .pw__chrome {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 10px 14px;
-    background: var(--sidebar);
-    border-bottom: 1px solid var(--border);
-  }
-  .pw__dot {
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: color-mix(in oklab, var(--terminal-fg) 22%, transparent);
-  }
-  .pw__path {
-    margin-left: 8px;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--terminal-dim);
-  }
-  .pw__frame img {
+  .pw__shot {
+    display: block;
     width: 100%;
     height: auto;
-  }
-  .pw figcaption {
-    padding: 0.85rem 1rem;
-    text-align: center;
-    font-size: 0.8125rem;
-    color: var(--terminal-dim);
-    background: var(--terminal-bg);
+    max-width: 980px;
+    margin-inline: auto;
+    border-radius: var(--radius-card);
+    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.35);
   }
 </style>
