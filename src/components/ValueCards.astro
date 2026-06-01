@@ -63,18 +63,19 @@ const t = useTranslations(lang);
     margin-top: clamp(2rem, 1rem + 3vw, 3.5rem);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    gap: 0;
   }
   .vcard {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    padding: 1.6rem 1.5rem;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    padding-inline: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
   }
-  .vcard:hover {
-    border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
-    transform: translateY(-3px);
+  .vcard:first-child {
+    padding-left: 0;
+  }
+  .vcard:last-child {
+    padding-right: 0;
+  }
+  .vcard + .vcard {
+    border-left: 1px solid var(--border);
   }
   .vcard__icon {
     font-size: 1.7rem;
@@ -89,9 +90,20 @@ const t = useTranslations(lang);
     color: var(--muted);
     font-size: 0.95rem;
   }
+  /* Mobile: stacked with padding only — no dividers. */
   @media (max-width: 860px) {
     .values__grid {
       grid-template-columns: 1fr;
+    }
+    .vcard,
+    .vcard:first-child,
+    .vcard:last-child,
+    .vcard + .vcard {
+      padding: 1.25rem 0;
+      border-left: none;
+    }
+    .vcard:first-child {
+      padding-top: 0;
     }
   }
 </style>
