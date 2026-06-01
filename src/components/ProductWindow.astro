@@ -63,12 +63,17 @@ const slides = [
 <script>
   const root = document.querySelector<HTMLElement>("[data-carousel]");
   if (root) {
+    const viewport = root.querySelector<HTMLElement>(".carousel__viewport");
     const slides = [...root.querySelectorAll<HTMLElement>(".carousel__slide")];
     const dots = [...root.querySelectorAll<HTMLButtonElement>(".carousel__dot")];
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const DELAY = 4500;
+    const SWIPE_THRESHOLD = 44;
     let index = 0;
     let timer: number | undefined;
+    let swipeStartX = 0;
+    let swipeStartY = 0;
+    let swipePointerId: number | undefined;
 
     const show = (next: number) => {
       index = (next + slides.length) % slides.length;
@@ -102,6 +107,37 @@ const slides = [
       stop();
       start();
     });
+    viewport?.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse") return;
+      swipePointerId = event.pointerId;
+      swipeStartX = event.clientX;
+      swipeStartY = event.clientY;
+      try {
+        viewport.setPointerCapture(event.pointerId);
+      } catch {
+        // Synthetic pointer events used in tests may not have an active pointer.
+      }
+      stop();
+    });
+    viewport?.addEventListener("pointerup", (event) => {
+      if (swipePointerId !== event.pointerId) return;
+      const dx = event.clientX - swipeStartX;
+      const dy = event.clientY - swipeStartY;
+      const isSwipe = Math.abs(dx) >= SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy) * 1.25;
+
+      if (isSwipe) show(index + (dx < 0 ? 1 : -1));
+      try {
+        viewport.releasePointerCapture(event.pointerId);
+      } catch {
+        // The pointer may already be released after browser-level cancellation.
+      }
+      swipePointerId = undefined;
+      start();
+    });
+    viewport?.addEventListener("pointercancel", () => {
+      swipePointerId = undefined;
+      start();
+    });
     root.addEventListener("mouseenter", stop);
     root.addEventListener("mouseleave", start);
     document.addEventListener("visibilitychange", () =>
@@ -125,6 +161,7 @@ const slides = [
     aspect-ratio: 1392 / 912;
     border-radius: var(--radius-card);
     overflow: hidden;
+    touch-action: pan-y;
   }
   .carousel__slide {
     position: absolute;
