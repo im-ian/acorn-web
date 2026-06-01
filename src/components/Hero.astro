@@ -1,37 +1,30 @@
 ---
 import { useTranslations, type Lang } from "~/i18n/ui";
-import { asset, links, installCommand } from "~/lib/site";
+import { asset, links } from "~/lib/site";
+import TypingRotator from "~/components/TypingRotator.astro";
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const taglineLines = t("hero.tagline")
-  .split("—")
-  .map((s) => s.trim());
+const words = t("hero.words")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
 ---
 
 <section class="hero">
   <div class="container hero__inner">
-    <img
-      class="hero__icon"
-      src={asset("acorn-icon-256.png")}
-      width="88"
-      height="88"
-      alt="Acorn"
-      fetchpriority="high"
-    />
-    <h1 class="hero__title">{t("hero.title")}</h1>
-    <p class="hero__tagline">
-      {
-        taglineLines.map((line, i) => (
-          <Fragment>
-            {i > 0 && <br />}
-            {line}
-          </Fragment>
-        ))
-      }
+    <p class="hero__brand">
+      <img src={asset("acorn-icon-256.png")} width="26" height="26" alt="" fetchpriority="high" />
+      <span>{t("hero.title")}</span>
+    </p>
+
+    <h1 class="hero__slogan">{t("hero.slogan")}</h1>
+
+    <p class="hero__better">
+      <TypingRotator prefix={t("hero.better")} words={words} />
     </p>
 
     <div class="hero__cta">
@@ -45,9 +38,7 @@ const taglineLines = t("hero.tagline")
 
     <p class="hero__meta">
       {t("hero.meta")} —
-      <a href={installCommand ? links.installScript : links.repo} target="_blank" rel="noopener"
-        >{t("hero.meta.script")}</a
-      >
+      <a href={links.installScript} target="_blank" rel="noopener">{t("hero.meta.script")}</a>
       {t("hero.meta.or")}
       <a href={links.releasesLatest} target="_blank" rel="noopener">{t("hero.meta.dmg")}</a>
     </p>
@@ -56,37 +47,41 @@ const taglineLines = t("hero.tagline")
 
 <style>
   .hero {
-    position: relative;
-    overflow: hidden;
     text-align: center;
     padding-top: clamp(3.5rem, 2rem + 6vw, 7rem);
     padding-bottom: clamp(2rem, 1rem + 3vw, 3.5rem);
   }
-  .hero__inner {
-    position: relative;
-    z-index: 1;
+  .hero__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
   }
-  .hero__icon {
-    margin: 0 auto 1.6rem;
-    filter: drop-shadow(0 10px 22px rgba(60, 40, 20, 0.18));
+  .hero__brand img {
+    border-radius: 6px;
   }
-  .hero__title {
-    font-size: var(--text-hero);
-    letter-spacing: -0.04em;
-  }
-  .hero__tagline {
-    max-width: 100%;
-    margin: 1.1rem auto 0;
-    font-size: var(--text-lead);
+  .hero__slogan {
+    margin-top: 1.1rem;
+    font-size: clamp(2rem, 1.3rem + 2.8vw, 3.4rem);
+    letter-spacing: -0.03em;
     text-wrap: balance;
-    color: color-mix(in oklab, var(--ink) 78%, var(--bg));
+  }
+  .hero__better {
+    margin-top: 0.9rem;
+    font-size: clamp(1.4rem, 1rem + 1.7vw, 2.3rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    min-height: 1.4em;
   }
   .hero__cta {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
     justify-content: center;
-    margin-top: 1.9rem;
+    margin-top: 2rem;
   }
   .hero__meta {
     margin-top: 1.15rem;

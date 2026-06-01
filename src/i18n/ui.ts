@@ -14,6 +14,9 @@ export const ui = {
     "nav.download": "macOS 다운로드",
 
     "hero.title": "Acorn",
+    "hero.slogan": "코딩 에이전트와 편의 기능들을 한곳에.",
+    "hero.better": "더 나은",
+    "hero.words": "생산성,효율성,편의성,집중력",
     "hero.tagline":
       "병렬 AI 코딩 에이전트 세션을 한 창에서 — 분할 Pane, 세션별 격리 git worktree, 네이티브 PTY 터미널.",
     "hero.cta.download": "macOS 버전 다운로드",
@@ -61,6 +64,9 @@ export const ui = {
     "nav.download": "Download for macOS",
 
     "hero.title": "Acorn",
+    "hero.slogan": "Coding agents and conveniences, all in one place.",
+    "hero.better": "Better",
+    "hero.words": "productivity,efficiency,convenience,focus",
     "hero.tagline":
       "Parallel AI coding agent sessions in one window — split panes, isolated git worktrees, native PTY terminals.",
     "hero.cta.download": "Download for macOS",

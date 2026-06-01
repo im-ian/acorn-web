@@ -1,0 +1,108 @@
+---
+interface Props {
+  prefix: string;
+  words: string[];
+}
+const { prefix, words } = Astro.props;
+---
+
+<span class="typer">
+  <span class="typer__prefix">{prefix}&nbsp;</span><span
+    class="typer__word"
+    data-words={JSON.stringify(words)}>{words[0]}</span><span class="typer__caret" aria-hidden="true"
+  ></span>
+</span>
+
+<script>
+  const REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll<HTMLElement>(".typer__word").forEach((el) => {
+    let words: string[] = [];
+    try {
+      words = JSON.parse(el.dataset.words ?? "[]");
+    } catch {
+      words = [];
+    }
+    if (!words.length) return;
+
+    // Reduced motion: show the first word, no animation.
+    if (REDUCE) {
+      el.textContent = words[0];
+      const caret = el.nextElementSibling as HTMLElement | null;
+      caret?.style.setProperty("display", "none");
+      return;
+    }
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    el.textContent = "";
+
+    const TYPE = 80;
+    const DELETE = 40;
+    const HOLD = 1500;
+    const BETWEEN = 350;
+
+    const tick = () => {
+      const word = words[wordIndex];
+      if (!deleting) {
+        charIndex += 1;
+        el.textContent = word.slice(0, charIndex);
+        if (charIndex === word.length) {
+          deleting = true;
+          return schedule(HOLD);
+        }
+        return schedule(TYPE);
+      }
+      charIndex -= 1;
+      el.textContent = word.slice(0, charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        return schedule(BETWEEN);
+      }
+      return schedule(DELETE);
+    };
+
+    const schedule = (delay: number) => window.setTimeout(tick, delay);
+    schedule(700);
+  });
+</script>
+
+<style>
+  .typer {
+    display: inline-flex;
+    align-items: baseline;
+  }
+  .typer__prefix {
+    color: var(--ink);
+  }
+  .typer__word {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .typer__caret {
+    display: inline-block;
+    width: 2px;
+    align-self: center;
+    height: 1em;
+    margin-left: 2px;
+    background: var(--accent);
+    animation: typer-blink 1s steps(1) infinite;
+  }
+  @keyframes typer-blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    50.01%,
+    100% {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .typer__caret {
+      animation: none;
+    }
+  }
+</style>
