@@ -29,12 +29,11 @@ const t = useTranslations(lang);
   }
   .cta__inner h2 {
     font-size: var(--text-h2);
-    text-wrap: nowrap;
-  }
-  @media (max-width: 560px) {
-    .cta__inner h2 {
-      text-wrap: normal;
-    }
+    line-height: 1.12;
+    max-width: min(100%, 16ch);
+    margin-inline: auto;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
   .cta__row {
     display: flex;
