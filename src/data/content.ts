@@ -87,17 +87,17 @@ export const techPoints: TechPoint[] = [
     },
   },
   {
-    k: { ko: "React 19 프런트엔드", en: "React 19 front-end" },
+    k: { ko: "어떤 AI CLI든", en: "Any AI CLI" },
     v: {
-      ko: "zustand 상태관리, xterm 터미널, 가상 스크롤로 매끄러운 대규모 세션.",
-      en: "zustand state, xterm terminals, and virtualized lists for smooth large sessions.",
+      ko: "세션은 $SHELL로 시작 — Claude·Codex·Antigravity·Ollama·llm을 그대로 실행, 벤더 락인 없음.",
+      en: "Sessions start in $SHELL — run Claude, Codex, Antigravity, Ollama, or llm as-is, no vendor lock-in.",
     },
   },
   {
-    k: { ko: "worktree 격리", en: "Worktree isolation" },
+    k: { ko: "간편한 작업 공간 분리", en: "Easy workspace separation" },
     v: {
-      ko: "세션마다 worktree를 분리해, 동시 작업이 서로를 깨뜨리지 않습니다.",
-      en: "A separate worktree per session keeps parallel work from clobbering itself.",
+      ko: "세션을 새 worktree로 fork 해 같은 저장소를 충돌 없이 병렬로 작업합니다.",
+      en: "Fork a session into a fresh worktree to work the same repo in parallel, conflict-free.",
     },
   },
   {
