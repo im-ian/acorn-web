@@ -82,8 +82,8 @@ export const techPoints: TechPoint[] = [
   {
     k: { ko: "Tauri 2 · Rust 코어", en: "Tauri 2 · Rust core" },
     v: {
-      ko: "네이티브 PTY 셸과 사이드카 daemon으로 가볍고 빠른 데스크톱 경험.",
-      en: "Native PTY shells and a sidecar daemon for a light, fast desktop experience.",
+      ko: "Rust 코어와 네이티브 PTY 셸로 가볍고 빠르게 — 무거운 런타임 없이.",
+      en: "A Rust core and native PTY shells keep it light and fast — no heavy runtime.",
     },
   },
   {
@@ -103,8 +103,8 @@ export const techPoints: TechPoint[] = [
   {
     k: { ko: "Background sessions", en: "Background sessions" },
     v: {
-      ko: "앱을 종료·재시작해도 PTY 세션 유지, 다시 열면 화면 복원.",
-      en: "Quit and relaunch with PTY sessions intact — reopen and the screen restores.",
+      ko: "백그라운드 daemon이 PTY 세션을 살려둬, 앱을 종료·재시작해도 다시 열면 화면 그대로.",
+      en: "A background daemon keeps PTY sessions alive — quit, relaunch, and reopen right where you left off.",
     },
   },
 ];
