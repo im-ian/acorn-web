@@ -44,10 +44,9 @@ export const ui = {
     "install.copied": "복사됨",
     "install.manual": "수동 DMG · 소스 빌드 가이드",
 
-    "cta.title": "지금 병렬로 일하세요",
-    "cta.lead": "다운로드는 무료. 이슈 · PR 환영.",
+    "cta.title": "지금 바로 흩어진 작업들을 모아보세요",
     "cta.download": "macOS 다운로드",
-    "cta.star": "GitHub에 ⭐",
+    "cta.star": "GitHub 스타",
 
     "footer.tagline": "코딩 에이전트들과 편의 기능들을 한곳에.",
     "footer.made": "제작",
@@ -92,8 +91,7 @@ export const ui = {
     "install.copied": "Copied",
     "install.manual": "Manual DMG · build from source",
 
-    "cta.title": "Work in parallel today",
-    "cta.lead": "Free to download. Issues and PRs welcome.",
+    "cta.title": "Bring your scattered work together",
     "cta.download": "Download for macOS",
     "cta.star": "Star on GitHub",
 
