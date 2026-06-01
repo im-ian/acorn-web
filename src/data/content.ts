@@ -45,10 +45,10 @@ export interface FeatureItem {
 
 export const features: FeatureItem[] = [
   {
-    title: { ko: "한눈에 보는 워크스페이스", en: "The whole workspace at a glance" },
+    title: { ko: "한눈에 보이는 워크스페이스", en: "The whole workspace at a glance" },
     body: {
-      ko: "사이드바 라이브 상태(유휴 / 입력 대기 / 작업 중), 분할 Pane, 우측 패널의 Code · GitHub · Agents 탭을 한 화면에서.",
-      en: "Live sidebar status (idle / waiting / working), split panes, and a right panel with Code, GitHub, and Agents tabs — all in one view.",
+      ko: "분할 Pane, 사이드바 라이브 상태(유휴 · 입력 대기 · 작업 중), 우측 패널 Code · GitHub · Agents까지 한 화면에.",
+      en: "Split panes, live sidebar status (idle · waiting · working), and the Code · GitHub · Agents right panel — all on one screen.",
     },
     image: "screenshots/workspace.png",
     alt: { ko: "Acorn 메인 워크스페이스", en: "Acorn main workspace" },
@@ -56,8 +56,8 @@ export const features: FeatureItem[] = [
   {
     title: { ko: "PR을 앱에서 바로", en: "Pull requests, right here" },
     body: {
-      ko: "PR 리스트와 상세 모달 — 체크 상태, 변경 사항, 머지 옵션, 본문 task 토글, AI 머지 메시지 자동 생성까지.",
-      en: "PR list and detail modal — check status, diffs, merge options, body task toggles, and AI-generated merge messages.",
+      ko: "PR 리스트·상세 모달에서 체크·변경 사항·머지 옵션을 확인하고, 머지 메시지는 AI로 자동 생성.",
+      en: "Check status, diffs, and merge options from the PR list and detail modal — and let AI draft the merge message.",
     },
     image: "screenshots/pr-modal.png",
     alt: { ko: "Acorn PR 상세 모달", en: "Acorn PR detail modal" },
@@ -65,8 +65,8 @@ export const features: FeatureItem[] = [
   {
     title: { ko: "에이전트가 에이전트를 조종", en: "Agents driving agents" },
     body: {
-      ko: "Control session으로 한 세션이 다른 세션을 조작하는 모습. ⌘⌥⇧T 또는 커맨드 팔레트에서 시작.",
-      en: "Watch one session operate another through a control session. Start it with ⌘⌥⇧T or the command palette.",
+      ko: "컨트롤 세션으로 다른 세션을 원격 제어 — ⌘⌥⇧T 또는 커맨드 팔레트에서 시작.",
+      en: "Remote-control other sessions from a control session — start it with ⌘⌥⇧T or the command palette.",
     },
     image: "screenshots/control-session.gif",
     alt: { ko: "Acorn Control session 데모", en: "Acorn control session demo" },
