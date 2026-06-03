@@ -22,8 +22,8 @@ export const values: ValueItem[] = [
     icon: "🔔",
     title: { ko: "네이티브 Chat runtime", en: "Native chat runtime" },
     body: {
-      ko: "터미널 위에 직접 붙은 chat 흐름으로 에이전트 대화를 이어갑니다. 빈 composer 안내와 continuation controls로 다음 입력 타이밍을 놓치지 않습니다.",
-      en: "Keep agent conversations moving through a chat flow attached to the terminal, with empty-composer prompts and continuation controls for the next step.",
+      ko: "터미널뿐만 아니라 메신저를 쓰듯 직관적인 Chat UI에서 에이전트와 대화를 진행할 수 있습니다.",
+      en: "Talk with agents not only in the terminal, but also in an intuitive Chat UI that feels like a messenger.",
     },
   },
   {
