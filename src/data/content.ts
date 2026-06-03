@@ -20,10 +20,10 @@ export const values: ValueItem[] = [
   },
   {
     icon: "🔔",
-    title: { ko: "알림 센터", en: "Activity center" },
+    title: { ko: "네이티브 Chat runtime", en: "Native chat runtime" },
     body: {
-      ko: "세션별 알림(입력 대기·완료·실패)을 Activity 탭과 상태 표시줄에서 모아 보기. 원하는 이벤트만 macOS 알림으로 받도록 설정.",
-      en: "Collect per-session alerts (waiting · done · failed) in the Activity tab and status bar — and pick which events also fire a macOS notification.",
+      ko: "터미널 위에 직접 붙은 chat 흐름으로 에이전트 대화를 이어갑니다. 빈 composer 안내와 continuation controls로 다음 입력 타이밍을 놓치지 않습니다.",
+      en: "Keep agent conversations moving through a chat flow attached to the terminal, with empty-composer prompts and continuation controls for the next step.",
     },
   },
   {
