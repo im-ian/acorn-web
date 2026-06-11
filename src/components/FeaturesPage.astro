@@ -18,6 +18,7 @@ const copy = {
     quickItems: [
       "다중 Pane + 탭 워크스페이스",
       "세션별 격리 git worktree",
+      "워크트리 작업공간과 공유 worktree 보존 정책",
       "Claude / Codex / Antigravity 등 AI CLI 세션",
       "네이티브 Chat runtime과 continuation controls",
       "우측 Code · GitHub · Agents 패널",
@@ -43,9 +44,14 @@ const copy = {
             body: "앱 안에서 프로젝트를 추가하고 사이드바에서 그룹화합니다. 프로젝트와 세션은 드래그로 재정렬할 수 있습니다.",
           },
           {
+            title: "워크트리 작업공간",
+            body:
+              "사이드바에서 연결된 git worktree를 별도 작업공간으로 만들고 세션을 묶어 관리합니다. 공유 worktree 작업공간은 세션 제거와 디스크 삭제 정책을 분리합니다.",
+          },
+          {
             title: "격리된 git worktree",
             body:
-              "세션마다 별도 worktree를 만들어 같은 저장소에서 충돌 없이 병렬 작업합니다. 종료 시 worktree 정리 옵션과 항상 삭제 모드를 제공합니다.",
+              "단독 세션마다 별도 worktree를 만들어 같은 저장소에서 충돌 없이 병렬 작업합니다. 종료 시 standalone isolated worktree 정리 옵션과 항상 삭제 모드를 제공합니다.",
           },
         ],
       },
@@ -116,7 +122,8 @@ const copy = {
           },
           {
             title: "빠른 시작",
-            body: "⌘⌥⇧T 또는 커맨드 팔레트의 New control session으로 시작합니다.",
+            body:
+              "⌘⌥⇧T, 프로젝트 헤더의 Bot 아이콘, 커맨드 팔레트의 New control session으로 시작합니다. 기존 터미널에서는 acorn-ipc promote-self로 현재 세션을 승격할 수 있습니다.",
           },
           {
             title: "지원 플랫폼",
@@ -159,6 +166,10 @@ const copy = {
             body: "신택스 하이라이팅, 파일 내 검색, markdown 프리뷰 토글, 외부 에디터로 열기를 제공합니다.",
           },
           {
+            title: "Media 뷰어",
+            body: "이미지, 비디오, 오디오, PDF 파일을 앱 안에서 미리 봅니다. 이미지는 확대, 축소, 줌 초기화 컨트롤을 제공합니다.",
+          },
+          {
             title: "Diff 뷰어",
             body: "변경 사항을 통합 또는 분할 모드로 확인하고, PR이나 커밋 전 검토 흐름에 연결합니다.",
           },
@@ -179,7 +190,8 @@ const copy = {
           },
           {
             title: "AI 공급자와 외부 도구",
-            body: "Claude, Codex, Antigravity, Ollama, llm, 커스텀 공급자와 외부 에디터 명령을 선택합니다.",
+            body:
+              "Acorn의 AI 기능은 Claude Code, Codex, Antigravity CLI를 선택해 사용합니다. 세션 안에서는 Ollama, llm, 커스텀 CLI도 직접 실행할 수 있고, 외부 에디터 명령을 설정할 수 있습니다.",
           },
           {
             title: "정리 도구",
@@ -222,6 +234,7 @@ const copy = {
     quickItems: [
       "Multi-pane tab workspace",
       "Isolated git worktree per session",
+      "Worktree workspaces with separate cleanup policy",
       "Claude / Codex / Antigravity and other AI CLI sessions",
       "Native chat runtime and continuation controls",
       "Code · GitHub · Agents right panel",
@@ -247,9 +260,14 @@ const copy = {
             body: "Add projects in the app, group them in the sidebar, and reorder projects and sessions by dragging.",
           },
           {
+            title: "Worktree workspaces",
+            body:
+              "Create a sidebar workspace backed by a linked git worktree and keep related sessions together. Shared worktree workspaces separate removing sessions from deleting files on disk.",
+          },
+          {
             title: "Isolated git worktrees",
             body:
-              "Give each session its own worktree so one repository can be worked on in parallel without collisions. Cleanup options include an always-delete mode.",
+              "Give standalone sessions their own worktree so one repository can be worked on in parallel without collisions. Cleanup options include an always-delete mode for standalone isolated worktrees.",
           },
         ],
       },
@@ -319,7 +337,8 @@ const copy = {
           },
           {
             title: "Quick start",
-            body: "Start with ⌘⌥⇧T or New control session in the command palette.",
+            body:
+              "Start with ⌘⌥⇧T, the project header Bot icon, or New control session in the command palette. From an existing terminal, run acorn-ipc promote-self to promote that session.",
           },
           {
             title: "Platform support",
@@ -362,6 +381,10 @@ const copy = {
             body: "Syntax highlighting, in-file search, markdown preview toggle, and open-in-external-editor support.",
           },
           {
+            title: "Media viewer",
+            body: "Preview image, video, audio, and PDF files inside the app. Images include zoom in, zoom out, and reset controls.",
+          },
+          {
             title: "Diff viewer",
             body: "Review changes in unified or split mode before committing or merging.",
           },
@@ -382,7 +405,8 @@ const copy = {
           },
           {
             title: "AI providers and external tools",
-            body: "Choose Claude, Codex, Antigravity, Ollama, llm, custom providers, and external editor commands.",
+            body:
+              "Use Claude Code, Codex, or Antigravity for Acorn's native AI features. Inside sessions, you can still run Ollama, llm, or custom CLIs directly, and configure an external editor command.",
           },
           {
             title: "Cleanup tools",

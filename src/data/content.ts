@@ -65,8 +65,8 @@ export const features: FeatureItem[] = [
   {
     title: { ko: "에이전트가 에이전트를 조종", en: "Agents driving agents" },
     body: {
-      ko: "컨트롤 세션으로 다른 세션을 원격 제어 — ⌘⌥⇧T 또는 커맨드 팔레트에서 시작.",
-      en: "Remote-control other sessions from a control session — start it with ⌘⌥⇧T or the command palette.",
+      ko: "컨트롤 세션으로 다른 세션을 원격 제어 — ⌘⌥⇧T, 프로젝트 Bot 아이콘, 커맨드 팔레트에서 시작.",
+      en: "Remote-control other sessions from a control session — start with ⌘⌥⇧T, the project Bot icon, or the command palette.",
     },
     image: "screenshots/control-session.gif",
     alt: { ko: "Acorn Control session 데모", en: "Acorn control session demo" },
