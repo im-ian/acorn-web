@@ -16,14 +16,14 @@ const copy = {
     screenshotAlt: "Acorn 메인 워크스페이스",
     quickTitle: "빠르게 훑기",
     quickItems: [
-      "다중 Pane + 탭 워크스페이스",
-      "세션별 격리 git worktree",
-      "워크트리 작업공간과 공유 worktree 보존 정책",
+      "Pane + Kanban 프로젝트 워크스페이스",
+      "새 프로젝트 생성 + linked/isolated worktree 관리",
       "Claude / Codex / Antigravity 등 AI CLI 세션",
-      "네이티브 Chat runtime과 continuation controls",
-      "우측 Code · GitHub · Agents 패널",
+      "네이티브 Chat runtime + 수정·재생성·fork",
+      "세션 lifecycle Kanban + 작업 요약",
+      "File · Code · Diff · Media + GitHub 패널",
       "Background sessions와 Control session",
-      "Activity, History, Todos, 자동 업데이트",
+      "Activity · History · Todos · 토큰 사용량",
     ],
     groups: [
       {
@@ -41,17 +41,17 @@ const copy = {
           },
           {
             title: "프로젝트 그룹과 정렬",
-            body: "앱 안에서 프로젝트를 추가하고 사이드바에서 그룹화합니다. 프로젝트와 세션은 드래그로 재정렬할 수 있습니다.",
+            body: "앱 안에서 새 git 프로젝트를 만들거나 기존 프로젝트를 추가하고, 이름 있는 워크스페이스로 그룹화합니다. 프로젝트와 세션은 드래그로 재정렬할 수 있습니다.",
           },
           {
             title: "워크트리 작업공간",
             body:
-              "사이드바에서 연결된 git worktree를 별도 작업공간으로 만들고 세션을 묶어 관리합니다. 공유 worktree 작업공간은 세션 제거와 디스크 삭제 정책을 분리합니다.",
+              "기존 linked git worktree를 사이드바 작업공간으로 가져와 관련 세션을 묶고, 프로젝트 설정에서 worktree를 확인·삭제합니다. 공유 worktree는 세션 제거와 디스크 삭제 정책을 분리합니다.",
           },
           {
             title: "격리된 git worktree",
             body:
-              "단독 세션마다 별도 worktree를 만들어 같은 저장소에서 충돌 없이 병렬 작업합니다. 종료 시 standalone isolated worktree 정리 옵션과 항상 삭제 모드를 제공합니다.",
+              "단독 세션마다 별도 worktree를 만들어 같은 저장소에서 충돌 없이 병렬 작업합니다. 종료 시 정리 옵션, 항상 삭제 모드, 지연 삭제 실행 취소를 제공합니다.",
           },
         ],
       },
@@ -72,11 +72,11 @@ const copy = {
           {
             title: "네이티브 Chat runtime",
             body:
-              "터미널뿐만 아니라 메신저를 쓰듯 직관적인 Chat UI 모드에서 에이전트와 대화를 진행할 수 있습니다.",
+              "Claude, Codex, Antigravity와 스트리밍으로 대화하고 응답을 중지하거나 provider를 전환합니다. 파일 첨부, 메시지 복사·수정, 응답 재생성, 이후 대화 가지 삭제를 지원합니다.",
           },
           {
             title: "세션 fork",
-            body: "Claude, Codex, Antigravity 세션을 현재 Pane이나 새 worktree로 fork해 같은 맥락에서 별도 작업을 이어갑니다.",
+            body: "터미널 에이전트 세션을 현재 Pane이나 새 worktree로 fork하고, 네이티브 Chat은 원하는 메시지 시점에서 같은 worktree 또는 새 격리 worktree로 분기합니다.",
           },
           {
             title: "탭 제목 자동 생성",
@@ -86,6 +86,32 @@ const copy = {
             title: "라이브 상태 표시",
             body:
               "사이드바에서 유휴, 입력 대기, 작업 중 상태를 확인합니다. Claude, Codex, Antigravity transcript와 hook 기반으로 추적합니다.",
+          },
+        ],
+      },
+      {
+        title: "Kanban과 작업 요약",
+        intro: "여러 세션의 현재 단계와 각 세션이 만든 결과를 한눈에 파악합니다.",
+        items: [
+          {
+            title: "Lifecycle Kanban",
+            body:
+              "Pane과 Kanban 보기를 프로젝트별로 전환·기억합니다. 세션 상태와 작업 트리 diff, PR 상태를 조합해 Idle, Working, Waiting, Review, Done으로 자동 분류합니다.",
+          },
+          {
+            title: "Kanban 운영 도구",
+            body:
+              "검색·정렬, 단계별 체류 시간과 stall 표시, 수동 완료, 열 너비 조절을 제공합니다. 카드에서 터미널·채팅 팝오버, PR 상세, 새 일반·worktree·chat·control 세션을 바로 엽니다.",
+          },
+          {
+            title: "Work summary",
+            body:
+              "현재 worktree의 변경 파일, 라인 증감, 상태 분포를 세션별 탭으로 집계합니다. 요약에서 파일을 바로 열고 세션·브랜치·transcript metadata를 확인합니다.",
+          },
+          {
+            title: "대화와 토큰 집계",
+            body:
+              "네이티브 Chat의 메시지·턴 현황과 사용 가능한 입력·출력·캐시·추론 토큰 metadata를 작업 시작 또는 요약 시작 시점부터 비교합니다.",
           },
         ],
       },
@@ -142,9 +168,9 @@ const copy = {
               "파일 트리, 검색, Git 상태, 스테이징 변경, 커밋, Diff 모달을 제공합니다. 터미널의 파일 참조를 클릭해 코드 뷰어로 이동할 수 있습니다.",
           },
           {
-            title: "GitHub: PRs / Actions",
+            title: "GitHub: PRs / Issues / Actions",
             body:
-              "PR 리스트, 라벨, 체크, CI 시간, 상세 모달, Conversation, Commits, Checks, Files를 확인합니다. PR 본문 task 토글과 AI 머지 메시지 생성도 지원합니다.",
+              "PR·Issue 목록과 상세, Conversation, Commits, Checks, Files를 확인합니다. 이슈·PR 댓글 작성·수정·삭제, PR 본문 task 토글, AI 머지 메시지 생성도 지원합니다.",
           },
           {
             title: "GitHub Actions",
@@ -162,8 +188,8 @@ const copy = {
         intro: "코드를 읽고 변경 사항을 확인하고, 세션 이벤트를 놓치지 않도록 돕는 보조 기능입니다.",
         items: [
           {
-            title: "Code 뷰어",
-            body: "신택스 하이라이팅, 파일 내 검색, markdown 프리뷰 토글, 외부 에디터로 열기를 제공합니다.",
+            title: "File Explorer와 Code 뷰어",
+            body: "파일명·내용 검색에 정규식, 대소문자, include/exclude 조건을 적용하고 dotfile·gitignored 표시를 전환합니다. 이름 변경, 휴지통 이동, 경로 복사, 에이전트 첨부와 함께 신택스 하이라이팅, 파일 내 검색, markdown source/preview를 제공합니다.",
           },
           {
             title: "Media 뷰어",
@@ -186,7 +212,11 @@ const copy = {
         items: [
           {
             title: "UI와 터미널 설정",
-            body: "언어, UI 배율, theme, 배경 이미지, 터미널 폰트 3-slot fallback, 단축키 힌트를 설정합니다.",
+            body: "언어, UI 배율, theme, 배경 이미지, 기본 Pane·Kanban 보기와 팝오버 동작을 설정합니다. 터미널 폰트 fallback·프리셋, 크기·굵기·자간·줄 높이·안티앨리어싱, 상주 터미널 수를 조절합니다.",
+          },
+          {
+            title: "사용자 지정 단축키",
+            body: "각 단축키를 직접 녹화하고 충돌을 확인하며 개별 또는 전체 기본값으로 되돌릴 수 있습니다.",
           },
           {
             title: "AI 공급자와 외부 도구",
@@ -195,16 +225,16 @@ const copy = {
           },
           {
             title: "정리 도구",
-            body: "Background sessions, orphan worktree, 캐시 정리, macOS 보호 폴더 권한 점검과 재설정을 제공합니다.",
+            body: "Background sessions, 작업 중 절전 방지, 종료 경고, orphan worktree, 캐시 정리, macOS 보호 폴더 권한 점검과 재설정을 제공합니다.",
           },
           {
             title: "상태 표시줄",
             body:
-              "메모리와 프로세스별 breakdown, 현재 worktree 브랜치, GitHub 계정 배지, multi-input 상태를 보여줍니다.",
+              "메모리와 프로세스별 breakdown, 현재 worktree 브랜치, GitHub 계정 배지, 활성 Claude·Codex 토큰 사용량, Background sessions와 multi-input 상태를 보여줍니다.",
           },
           {
             title: "자동 업데이트",
-            body: "새 macOS 버전을 감지하면 배너를 띄우고, 적용 시점은 사용자가 선택합니다.",
+            body: "새 macOS 버전을 감지하면 배너를 띄우고, 적용 시점은 사용자가 선택합니다. About 탭에서 현재 버전의 GitHub 릴리스 노트도 확인할 수 있습니다.",
           },
         ],
       },
@@ -215,11 +245,13 @@ const copy = {
       ["새 세션 / isolated / control", "⌘T / ⌘⌥T / ⌘⌥⇧T"],
       ["새 프로젝트", "⌘⇧N"],
       ["Pane 분할 세로 / 가로", "⌘D / ⌘⇧D"],
+      ["Pane 크기 균등화", "⌘⌥E"],
       ["탭 닫기", "⌘W"],
       ["사이드바 / 메인 / 우측 패널 포커스", "⌘1 / ⌘2 / ⌘3"],
       ["사이드바 / 우측 패널 토글", "⌘B / ⌘J"],
       ["Multi-input 토글", "⌘⌥I"],
       ["다음 / 이전 세션", "Ctrl+Tab / Ctrl+⇧+Tab"],
+      ["최근 입력 대기 세션", "Ctrl+⌥]"],
       ["터미널 클리어", "⌘K"],
       ["설정", "⌘,"],
     ],
@@ -232,14 +264,14 @@ const copy = {
     screenshotAlt: "Acorn main workspace",
     quickTitle: "At a glance",
     quickItems: [
-      "Multi-pane tab workspace",
-      "Isolated git worktree per session",
-      "Worktree workspaces with separate cleanup policy",
+      "Pane + Kanban project workspaces",
+      "Create projects + manage linked and isolated worktrees",
       "Claude / Codex / Antigravity and other AI CLI sessions",
-      "Native chat runtime and continuation controls",
-      "Code · GitHub · Agents right panel",
+      "Native chat with edit, regenerate, and fork controls",
+      "Session lifecycle Kanban + work summaries",
+      "File · Code · Diff · Media + GitHub panel",
       "Background sessions and Control session",
-      "Activity, History, Todos, and auto-update",
+      "Activity · History · Todos · token usage",
     ],
     groups: [
       {
@@ -257,17 +289,17 @@ const copy = {
           },
           {
             title: "Project groups and ordering",
-            body: "Add projects in the app, group them in the sidebar, and reorder projects and sessions by dragging.",
+            body: "Create a git project or add an existing one, organize it into named workspaces, and reorder projects and sessions by dragging.",
           },
           {
             title: "Worktree workspaces",
             body:
-              "Create a sidebar workspace backed by a linked git worktree and keep related sessions together. Shared worktree workspaces separate removing sessions from deleting files on disk.",
+              "Adopt an existing linked git worktree as a sidebar workspace, keep related sessions together, and inspect or remove worktrees from project settings. Shared worktrees separate removing sessions from deleting files on disk.",
           },
           {
             title: "Isolated git worktrees",
             body:
-              "Give standalone sessions their own worktree so one repository can be worked on in parallel without collisions. Cleanup options include an always-delete mode for standalone isolated worktrees.",
+              "Give standalone sessions their own worktree so one repository can be worked on in parallel without collisions. Cleanup includes prompts, an always-delete mode, and undo for delayed deletion.",
           },
         ],
       },
@@ -287,11 +319,11 @@ const copy = {
           {
             title: "Native chat runtime",
             body:
-              "Continue agent conversations not only in the terminal, but also in an intuitive Chat UI mode that feels like a messenger.",
+              "Stream conversations with Claude, Codex, or Antigravity, stop responses, and switch providers. Attach files, copy or edit messages, regenerate responses, and delete the following branch.",
           },
           {
             title: "Session fork",
-            body: "Fork Claude, Codex, or Antigravity sessions into the current pane or a fresh worktree.",
+            body: "Fork terminal agent sessions into the current pane or a fresh worktree. Native chats can branch from any message into the same worktree or a new isolated one.",
           },
           {
             title: "Automatic tab titles",
@@ -301,6 +333,32 @@ const copy = {
             title: "Live session status",
             body:
               "The sidebar shows idle, waiting, and working states based on Claude, Codex, and Antigravity transcripts plus hooks.",
+          },
+        ],
+      },
+      {
+        title: "Kanban and work summaries",
+        intro: "See where every session is now and what each session has produced.",
+        items: [
+          {
+            title: "Lifecycle Kanban",
+            body:
+              "Switch between Pane and Kanban views and remember the choice per project. Session status, working-tree diffs, and PR state automatically place work into Idle, Working, Waiting, Review, or Done.",
+          },
+          {
+            title: "Kanban operations",
+            body:
+              "Search and sort sessions, inspect stage dwell time and stalls, mark work done, and resize columns. Open terminal or chat popovers, PR details, and new regular, worktree, chat, or control sessions from the board.",
+          },
+          {
+            title: "Work summaries",
+            body:
+              "Aggregate changed files, line deltas, and status distribution for the current worktree in a session tab. Open files directly and inspect session, branch, and transcript metadata.",
+          },
+          {
+            title: "Conversation and token totals",
+            body:
+              "Track native-chat messages and turns plus available input, output, cache, and reasoning token metadata from the session or summary baseline.",
           },
         ],
       },
@@ -357,9 +415,9 @@ const copy = {
               "File tree, search, Git status, staged changes, commits, and a Diff modal. File references from the terminal can open in the code viewer.",
           },
           {
-            title: "GitHub: PRs / Actions",
+            title: "GitHub: PRs / Issues / Actions",
             body:
-              "PR lists, labels, checks, CI timing, detail modals, conversations, commits, checks, files, task toggles, and AI-generated merge messages.",
+              "Browse PRs and issues with detail views for conversations, commits, checks, and files. Create, edit, or delete issue and PR comments, toggle PR tasks, and generate merge messages with AI.",
           },
           {
             title: "GitHub Actions",
@@ -377,8 +435,8 @@ const copy = {
         intro: "Supporting tools for reading code, reviewing changes, and tracking session events.",
         items: [
           {
-            title: "Code viewer",
-            body: "Syntax highlighting, in-file search, markdown preview toggle, and open-in-external-editor support.",
+            title: "File Explorer and code viewer",
+            body: "Search filenames and content with regex, case, include, and exclude filters; toggle dotfiles and gitignored files; rename, trash, copy paths, and attach files to agents. The code viewer adds syntax highlighting, in-file search, and Markdown source/preview modes.",
           },
           {
             title: "Media viewer",
@@ -401,7 +459,11 @@ const copy = {
         items: [
           {
             title: "UI and terminal settings",
-            body: "Language, UI scale, theme, background image, three-slot terminal font fallback, and shortcut hints.",
+            body: "Set language, UI scale, theme, background image, the default Pane or Kanban view, and popover behavior. Tune terminal font fallbacks and presets, size, weight, spacing, line height, antialiasing, and resident terminal limits.",
+          },
+          {
+            title: "Custom shortcuts",
+            body: "Record shortcuts directly, detect conflicts, and reset individual bindings or the complete shortcut map.",
           },
           {
             title: "AI providers and external tools",
@@ -410,16 +472,16 @@ const copy = {
           },
           {
             title: "Cleanup tools",
-            body: "Manage background sessions, orphan worktrees, caches, and macOS protected-folder permission checks.",
+            body: "Manage background sessions, keep-awake behavior, close warnings, orphan worktrees, caches, and macOS protected-folder permission checks.",
           },
           {
             title: "Status bar",
             body:
-              "Memory and process breakdown, current worktree branch, GitHub account badge, and multi-input state.",
+              "Memory and process breakdown, current worktree branch, GitHub account badge, active Claude or Codex token usage, background sessions, and multi-input state.",
           },
           {
             title: "Auto-update",
-            body: "Detect new macOS releases, show an update banner, and let the user choose when to apply it.",
+            body: "Detect new macOS releases, show an update banner, and let the user choose when to apply it. The About tab also shows GitHub release notes for the current version.",
           },
         ],
       },
@@ -430,11 +492,13 @@ const copy = {
       ["New session / isolated / control", "⌘T / ⌘⌥T / ⌘⌥⇧T"],
       ["New project", "⌘⇧N"],
       ["Split pane vertical / horizontal", "⌘D / ⌘⇧D"],
+      ["Equalize pane sizes", "⌘⌥E"],
       ["Close tab", "⌘W"],
       ["Focus sidebar / main / right panel", "⌘1 / ⌘2 / ⌘3"],
       ["Toggle sidebar / right panel", "⌘B / ⌘J"],
       ["Toggle multi-input", "⌘⌥I"],
       ["Next / previous session", "Ctrl+Tab / Ctrl+⇧+Tab"],
+      ["Latest needs-input session", "Ctrl+⌥]"],
       ["Clear terminal", "⌘K"],
       ["Settings", "⌘,"],
     ],

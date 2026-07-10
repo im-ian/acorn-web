@@ -12,18 +12,18 @@ export interface ValueItem {
 export const values: ValueItem[] = [
   {
     icon: "▦",
-    title: { ko: "다중 Pane 워크스페이스", en: "Multi-pane workspace" },
+    title: { ko: "Pane + Kanban 워크스페이스", en: "Pane + Kanban workspace" },
     body: {
-      ko: "가로/세로 분할과 자유로운 크기 조절. Pane 간 세션 드래그-드롭, 탭 이동·복제, 보이는 세션에 동시 입력하는 multi-input 모드.",
-      en: "Split horizontally or vertically and resize freely. Drag sessions between panes, move and clone tabs, and broadcast input to every visible session.",
+      ko: "분할 Pane에서 병렬 작업하고 Kanban에서 Idle부터 Done까지 흐름을 확인. 세션별 worktree와 작업 요약으로 변경 범위까지 한눈에.",
+      en: "Work in split panes, then track every session from Idle to Done in Kanban. Isolated worktrees and work summaries keep each change visible.",
     },
   },
   {
     icon: "🔔",
     title: { ko: "네이티브 Chat runtime", en: "Native chat runtime" },
     body: {
-      ko: "터미널뿐만 아니라 메신저를 쓰듯 직관적인 Chat UI에서 에이전트와 대화를 진행할 수 있습니다.",
-      en: "Talk with agents not only in the terminal, but also in an intuitive Chat UI that feels like a messenger.",
+      ko: "Claude, Codex, Antigravity와 스트리밍으로 대화하고 파일을 첨부. 메시지 수정, 응답 재생성, 원하는 시점에서 worktree fork까지.",
+      en: "Stream chats with Claude, Codex, and Antigravity, attach files, edit or regenerate turns, and fork from any point into another worktree.",
     },
   },
   {
@@ -45,10 +45,10 @@ export interface FeatureItem {
 
 export const features: FeatureItem[] = [
   {
-    title: { ko: "한눈에 보이는 워크스페이스", en: "The whole workspace at a glance" },
+    title: { ko: "한눈에 보이는 작업 흐름", en: "The whole workflow at a glance" },
     body: {
-      ko: "분할 Pane, 사이드바 라이브 상태(유휴 · 입력 대기 · 작업 중), 우측 패널 Code · GitHub · Agents까지 한 화면에.",
-      en: "Split panes, live sidebar status (idle · waiting · working), and the Code · GitHub · Agents right panel — all on one screen.",
+      ko: "분할 Pane과 Kanban, 사이드바 라이브 상태, 우측 Code · GitHub · Agents 패널, 세션별 작업 요약까지 한 앱에.",
+      en: "Split panes, Kanban, live sidebar status, the Code · GitHub · Agents panel, and per-session work summaries in one app.",
     },
     image: "screenshots/workspace.png",
     alt: { ko: "Acorn 메인 워크스페이스", en: "Acorn main workspace" },
@@ -91,6 +91,13 @@ export const techPoints: TechPoint[] = [
     v: {
       ko: "컨트롤 세션으로 같은 프로젝트의 세션들을 중앙 제어 — 원격으로 생성·조작·읽기·종료.",
       en: "Centrally control the project's sessions through a control session — create, drive, read, and close them remotely.",
+    },
+  },
+  {
+    k: { ko: "Kanban · Work summary", en: "Kanban · Work summaries" },
+    v: {
+      ko: "세션 상태와 diff, PR을 lifecycle로 묶어 보고 변경 파일·라인·대화·토큰을 작업 요약으로 집계.",
+      en: "Turn session state, diffs, and PRs into a lifecycle board, then summarize changed files, lines, conversations, and tokens.",
     },
   },
   {
