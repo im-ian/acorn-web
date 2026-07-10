@@ -54,6 +54,33 @@ export const features: FeatureItem[] = [
     alt: { ko: "Acorn 메인 워크스페이스", en: "Acorn main workspace" },
   },
   {
+    title: { ko: "세션 흐름을 Kanban으로", en: "Every session on a Kanban board" },
+    body: {
+      ko: "Idle · Working · Waiting · Review · Done으로 자동 분류하고, diff와 PR, 최근 대화, 체류 시간을 카드에서 바로 확인.",
+      en: "Automatically sort work into Idle · Working · Waiting · Review · Done, with diffs, PRs, recent messages, and dwell time on each card.",
+    },
+    image: "screenshots/kanban.png",
+    alt: { ko: "Acorn Kanban 워크스페이스", en: "Acorn Kanban workspace" },
+  },
+  {
+    title: { ko: "터미널 없이 이어가는 AI Chat", en: "Native AI chat, no terminal required" },
+    body: {
+      ko: "Claude, Codex, Antigravity와 스트리밍으로 대화하고 파일 첨부, 메시지 수정, 응답 재생성, worktree fork까지 한 화면에서.",
+      en: "Stream chats with Claude, Codex, and Antigravity, attach files, edit or regenerate turns, and fork into another worktree.",
+    },
+    image: "screenshots/chat-session.png",
+    alt: { ko: "Acorn 네이티브 Chat 세션", en: "Acorn native chat session" },
+  },
+  {
+    title: { ko: "변경 결과를 작업 요약으로", en: "Turn changes into a work summary" },
+    body: {
+      ko: "변경 파일과 라인, 상태 분포, 대화와 토큰 사용량을 세션별로 집계하고 요약에서 파일을 바로 열기.",
+      en: "Summarize changed files, line deltas, status distribution, conversations, and token usage, then open files directly from the report.",
+    },
+    image: "screenshots/work-summary.png",
+    alt: { ko: "Acorn 작업 요약", en: "Acorn work summary" },
+  },
+  {
     title: { ko: "PR을 앱에서 바로", en: "Pull requests, right here" },
     body: {
       ko: "PR 리스트·상세 모달에서 체크·변경 사항·머지 옵션을 확인하고, 머지 메시지는 AI로 자동 생성.",

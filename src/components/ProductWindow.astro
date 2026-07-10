@@ -8,13 +8,16 @@ interface Props {
 const { lang } = Astro.props;
 
 const labels: Record<Lang, string[]> = {
-  ko: ["워크스페이스", "PR 관리", "Control session"],
-  en: ["Workspace", "Pull requests", "Control session"],
+  ko: ["워크스페이스", "Kanban", "AI Chat", "작업 요약", "PR 관리", "Control session"],
+  en: ["Workspace", "Kanban", "AI chat", "Work summary", "Pull requests", "Control session"],
 };
 
 const slides = [
-  { src: "screenshots/workspace.png", w: 1392, h: 912 },
-  { src: "screenshots/pr-modal.png", w: 1392, h: 912 },
+  { src: "screenshots/workspace.png", w: 1600, h: 1000 },
+  { src: "screenshots/kanban.png", w: 1600, h: 1000 },
+  { src: "screenshots/chat-session.png", w: 1600, h: 1000 },
+  { src: "screenshots/work-summary.png", w: 1600, h: 1000 },
+  { src: "screenshots/pr-modal.png", w: 1600, h: 1000 },
   { src: "screenshots/control-session.gif", w: 1200, h: 786 },
 ].map((s, i) => ({ ...s, label: labels[lang][i] ?? labels.en[i] }));
 ---
