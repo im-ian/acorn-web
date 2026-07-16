@@ -12,10 +12,10 @@ export interface ValueItem {
 export const values: ValueItem[] = [
   {
     icon: "▦",
-    title: { ko: "Pane + Kanban 워크스페이스", en: "Pane + Kanban workspace" },
+    title: { ko: "Pane + Kanban + Canvas", en: "Pane + Kanban + Canvas" },
     body: {
-      ko: "분할 Pane에서 병렬 작업하고 Kanban에서 Idle부터 Done까지 흐름을 확인. 세션별 worktree와 작업 요약으로 변경 범위까지 한눈에.",
-      en: "Work in split panes, then track every session from Idle to Done in Kanban. Isolated worktrees and work summaries keep each change visible.",
+      ko: "분할 Pane에서 병렬 작업하고, Kanban에서 lifecycle을 추적하거나 Canvas에 라이브 세션을 자유롭게 배치. 세션별 worktree와 작업 요약으로 변경 범위까지 한눈에.",
+      en: "Work in split panes, track the lifecycle in Kanban, or arrange live sessions freely on Canvas. Isolated worktrees and work summaries keep each change visible.",
     },
   },
   {
@@ -47,8 +47,8 @@ export const features: FeatureItem[] = [
   {
     title: { ko: "한눈에 보이는 작업 흐름", en: "The whole workflow at a glance" },
     body: {
-      ko: "분할 Pane과 Kanban, 사이드바 라이브 상태, 우측 Code · GitHub · Agents 패널, 세션별 작업 요약까지 한 앱에.",
-      en: "Split panes, Kanban, live sidebar status, the Code · GitHub · Agents panel, and per-session work summaries in one app.",
+      ko: "분할 Pane과 Kanban·Canvas, 사이드바 라이브 상태, 우측 Code · GitHub · Agents 패널, 세션별 작업 요약까지 한 앱에.",
+      en: "Split panes, Kanban and Canvas, live sidebar status, the Code · GitHub · Agents panel, and per-session work summaries in one app.",
     },
     image: "screenshots/workspace.png",
     alt: { ko: "Acorn 메인 워크스페이스", en: "Acorn main workspace" },
@@ -56,11 +56,20 @@ export const features: FeatureItem[] = [
   {
     title: { ko: "세션 흐름을 Kanban으로", en: "Every session on a Kanban board" },
     body: {
-      ko: "Idle · Working · Waiting · Review · Done으로 자동 분류하고, diff와 PR, 최근 대화, 체류 시간을 카드에서 바로 확인.",
-      en: "Automatically sort work into Idle · Working · Waiting · Review · Done, with diffs, PRs, recent messages, and dwell time on each card.",
+      ko: "Idle · Working · Waiting · Review · Done으로 자동 분류하고, diff와 PR, 최근 대화, 체류 시간을 확인하거나 카드에서 라이브 터미널을 바로 열기.",
+      en: "Automatically sort work into Idle · Working · Waiting · Review · Done, inspect diffs, PRs, recent messages, and dwell time, or open a live terminal from any card.",
     },
     image: "screenshots/kanban.png",
     alt: { ko: "Acorn Kanban 워크스페이스", en: "Acorn Kanban workspace" },
+  },
+  {
+    title: { ko: "세션을 자유롭게 Canvas로", en: "Arrange live sessions on a Canvas" },
+    body: {
+      ko: "라이브 터미널과 채팅 세션을 자유롭게 배치·크기 조절하고, 확대·축소·전체 맞춤과 미니맵으로 넓은 작업 공간을 빠르게 탐색.",
+      en: "Arrange and resize live terminal and chat sessions freely, then navigate a large workspace with zoom, fit-to-view, and a minimap.",
+    },
+    image: "screenshots/canvas.png",
+    alt: { ko: "Acorn Canvas 워크스페이스", en: "Acorn Canvas workspace" },
   },
   {
     title: { ko: "터미널 없이 이어가는 AI Chat", en: "Native AI chat, no terminal required" },
@@ -121,10 +130,10 @@ export const techPoints: TechPoint[] = [
     },
   },
   {
-    k: { ko: "Kanban · Work summary", en: "Kanban · Work summaries" },
+    k: { ko: "Kanban · Canvas · 작업 요약", en: "Kanban · Canvas · Work summaries" },
     v: {
-      ko: "세션 상태와 diff, PR을 lifecycle로 묶어 보고 변경 파일·라인·대화·토큰을 작업 요약으로 집계.",
-      en: "Turn session state, diffs, and PRs into a lifecycle board, then summarize changed files, lines, conversations, and tokens.",
+      ko: "세션 상태와 diff, PR을 lifecycle로 묶거나 라이브 세션을 공간에 배치하고, 변경 파일·라인·대화·토큰을 작업 요약으로 집계.",
+      en: "Turn session state, diffs, and PRs into a lifecycle board or spatial workspace, then summarize changed files, lines, conversations, and tokens.",
     },
   },
   {

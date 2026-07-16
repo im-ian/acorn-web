@@ -18,7 +18,7 @@ export const ui = {
     "hero.better": "더 나은",
     "hero.words": "생산성,효율성,편의성,집중력,멀티태스킹,가시성,몰입력",
     "hero.tagline":
-      "병렬 AI 코딩 에이전트 세션을 한 창에서 — 네이티브 터미널과 채팅, 분할 Pane과 Kanban, 세션별 격리 git worktree.",
+      "병렬 AI 코딩 에이전트 세션을 한 창에서 — 네이티브 터미널과 채팅, 분할 Pane·Kanban·Canvas, 세션별 격리 git worktree.",
     "hero.cta.download": "macOS 버전 다운로드",
     "hero.cta.github": "GitHub에서 보기",
     "hero.meta": "Apple Silicon · Intel",
@@ -65,7 +65,7 @@ export const ui = {
     "hero.better": "Better",
     "hero.words": "productivity,efficiency,convenience,focus,multitasking,visibility,flow",
     "hero.tagline":
-      "Parallel AI coding agent sessions in one window — native terminals and chat, split panes and Kanban, isolated git worktrees.",
+      "Parallel AI coding agent sessions in one window — native terminals and chat, split panes, Kanban and Canvas, isolated git worktrees.",
     "hero.cta.download": "Download for macOS",
     "hero.cta.github": "View on GitHub",
     "hero.meta": "Apple Silicon · Intel",

@@ -16,7 +16,7 @@ const copy = {
     screenshotAlt: "Acorn 메인 워크스페이스",
     quickTitle: "빠르게 훑기",
     quickItems: [
-      "Pane + Kanban 프로젝트 워크스페이스",
+      "Pane + Kanban + Canvas 프로젝트 워크스페이스",
       "새 프로젝트 생성 + linked/isolated worktree 관리",
       "Claude / Codex / Antigravity 등 AI CLI 세션",
       "네이티브 Chat runtime + 수정·재생성·fork",
@@ -34,6 +34,11 @@ const copy = {
             title: "다중 Pane 워크스페이스",
             body:
               "가로/세로 분할, 자유로운 크기 조절, Pane 간 세션 드래그-드롭, 탭 이동·복제·재배치를 지원합니다. 빈 Pane을 더블 클릭해 새 세션을 만들 수 있습니다.",
+          },
+          {
+            title: "Canvas 워크스페이스",
+            body:
+              "라이브 터미널과 채팅 세션을 자유롭게 배치하고 드래그·크기 조절합니다. 확대·축소, 캔버스 이동, 전체 맞춤, 레이아웃 초기화·실행 취소와 미니맵 탐색을 지원합니다.",
           },
           {
             title: "Multi-input 모드",
@@ -264,7 +269,7 @@ const copy = {
     screenshotAlt: "Acorn main workspace",
     quickTitle: "At a glance",
     quickItems: [
-      "Pane + Kanban project workspaces",
+      "Pane + Kanban + Canvas project workspaces",
       "Create projects + manage linked and isolated worktrees",
       "Claude / Codex / Antigravity and other AI CLI sessions",
       "Native chat with edit, regenerate, and fork controls",
@@ -282,6 +287,11 @@ const copy = {
             title: "Multi-pane workspace",
             body:
               "Split horizontally or vertically, resize freely, drag sessions between panes, and move, clone, or rearrange tabs. Double-click an empty pane to create a session.",
+          },
+          {
+            title: "Canvas workspace",
+            body:
+              "Arrange, drag, and resize live terminal and chat sessions freely. Navigate with zoom, pan, fit-to-view, layout reset and undo, plus a minimap for distant sessions.",
           },
           {
             title: "Multi-input mode",
@@ -516,7 +526,7 @@ const c = copy[lang];
       <p>{c.lead}</p>
     </div>
     <figure class="featureHero__media reveal">
-      <img src={asset("screenshots/workspace.png")} alt={c.screenshotAlt} width="1392" height="912" />
+      <img src={asset("screenshots/workspace.png")} alt={c.screenshotAlt} width="1600" height="1000" />
     </figure>
   </div>
 </section>
